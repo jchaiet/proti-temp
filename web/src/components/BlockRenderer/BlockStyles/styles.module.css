@@ -1,0 +1,101 @@
+.root {
+  width: 100%;
+}
+
+/*
+ * Padding overrides intentionally target the direct Mino block root.
+ * This replaces, rather than adds to, each component's built-in block padding.
+ */
+.paddingNone {
+  --proti-block-padding: 0;
+}
+
+.paddingSm {
+  --proti-block-padding: var(--mino-spacing-sm, var(--spacing-sm, 0.5rem));
+}
+
+.paddingMd {
+  --proti-block-padding: var(--mino-spacing-md, var(--spacing-md, 1rem));
+}
+
+.paddingLg {
+  --proti-block-padding: var(--mino-spacing-lg, var(--spacing-lg, 1.5rem));
+}
+
+.paddingXl {
+  --proti-block-padding: var(--mino-spacing-xl, var(--spacing-xl, 2rem));
+}
+
+.padding2xl {
+  --proti-block-padding: var(--mino-spacing-2xl, var(--spacing-2xl, 3rem));
+}
+
+.padding3xl {
+  --proti-block-padding: var(--mino-spacing-3xl, var(--spacing-3xl, 4rem));
+}
+
+.paddingNone > :first-child,
+.paddingSm > :first-child,
+.paddingMd > :first-child,
+.paddingLg > :first-child,
+.paddingXl > :first-child,
+.padding2xl > :first-child,
+.padding3xl > :first-child {
+  padding-top: var(--proti-block-padding) !important;
+  padding-bottom: var(--proti-block-padding) !important;
+}
+
+.backgroundCanvas {
+  background-color: var(--mino-color-bg-canvas, var(--bg-canvas, #f8fafc));
+}
+
+.backgroundSurface {
+  background-color: var(--mino-color-bg-surface, var(--bg-surface, #ffffff));
+}
+
+.backgroundBrandMuted {
+  background-color: var(--mino-color-brand-muted, var(--brand-muted, #e6f0ff));
+}
+
+.widthNarrow {
+  --proti-block-content-width: 48rem;
+}
+
+.widthStandard {
+  --proti-block-content-width: 75rem;
+}
+
+.widthWide {
+  --proti-block-content-width: 90rem;
+}
+
+.widthFull {
+  --proti-block-content-width: 100%;
+}
+
+.widthNarrow,
+.widthStandard,
+.widthWide,
+.widthFull {
+  /* Shared Mino layout fallback used by most block containers. */
+  --mino-layout-max-width: var(--proti-block-content-width);
+
+  /* Component-specific variables ensure the authored override wins even when
+     a consuming site has customized an individual block's default width. */
+  --mino-hero-container-max-width: var(--proti-block-content-width);
+  --mino-carousel-block-container-max-width: var(--proti-block-content-width);
+  --mino-accordion-block-container-max-width: var(--proti-block-content-width);
+  --mino-content-block-container-max-width: var(--proti-block-content-width);
+  --mino-tabs-block-container-max-width: var(--proti-block-content-width);
+  --mino-form-block-container-max-width: var(--proti-block-content-width);
+  --mino-grid-block-container-max-width: var(--proti-block-content-width);
+  --mino-document-list-container-max-width: var(--proti-block-content-width);
+
+  /* Rich Text has size-specific container variables. A block-level content
+     width override intentionally takes precedence over its local reading width. */
+  --mino-rich-text-block-max-width-sm: var(--proti-block-content-width);
+  --mino-rich-text-block-max-width-md: var(--proti-block-content-width);
+  --mino-rich-text-block-max-width-lg: var(--proti-block-content-width);
+
+  --mino-poll-max-width: var(--proti-block-content-width);
+}

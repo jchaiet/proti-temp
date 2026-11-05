@@ -1,0 +1,15 @@
+{
+  "name": "proti-site",
+  "private": true,
+  "version": "0.3.0",
+  "scripts": {
+    "dev:web": "pnpm --dir web dev",
+    "dev:studio": "pnpm --dir studio dev",
+    "build:web": "pnpm --dir web build",
+    "build:studio": "pnpm --dir studio build",
+    "proti:init": "node scripts/proti-init.mjs",
+    "proti:seed": "node scripts/proti-seed.mjs",
+    "test:proti": "node --test scripts/proti-init.test.mjs scripts/proti-seed.test.mjs scripts/proti-check.test.mjs",
+    "proti:check": "node scripts/proti-check.mjs"
+  }
+}

@@ -1,0 +1,19 @@
+allowBuilds:
+  esbuild: true
+  sharp: false
+  unrs-resolver: false
+
+overrides:
+  # Sanity CLI dependencies
+  "undici@7.29.1": "7.30.1"
+  "js-yaml@3.13.1": "3.15.2"
+  "smol-toml@1.5.2": "1.9.0"
+
+  # Sanity and ESLint dependencies
+  "js-yaml@4.3.1": "4.3.2"
+  "brace-expansion@1.1.18": "1.1.21"
+  "brace-expansion@5.0.9": "5.0.12"
+
+  # Vite and build-tool dependencies
+  "vite@6.4.3": "6.4.4"
+  "source-map-js@1.2.1": "1.2.2"

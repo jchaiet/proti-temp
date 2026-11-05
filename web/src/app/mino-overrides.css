@@ -1,0 +1,1218 @@
+/*
+ * Proti — Mino UI public overrides
+ *
+ * Final customization catalog generated from the current Mino Core,
+ * Blocks, and Cards CSS surface.
+ *
+ * All declarations are intentionally commented out. Proti inherits Mino
+ * defaults until an override is explicitly enabled.
+ *
+ * Public variables listed: 966
+ * Raw --mino-palette-* variables omitted: 27
+ *
+ * Import after Mino tokens:
+ *
+ *   @import "mino-ui/tokens";
+ *   @import "./mino-overrides.css";
+ *
+ * Prefer these documented variables over targeting Mino CSS-module
+ * class names directly.
+ */
+
+:root {
+  /* ================================================================
+     Semantic primitives
+     ================================================================ */
+  /* --mino-color-bg-canvas: var(--bg-canvas); */
+  /* --mino-color-bg-muted: var(--bg-muted, rgba(255, 255, 255, 0.2)); */
+  /* --mino-color-bg-surface: var(--bg-surface); */
+  /* --mino-color-bg-surface-hover: var(--bg-surface-hover); */
+  /* --mino-color-border-default: var(--border-default); */
+  /* --mino-color-border-muted: var(--border-muted); */
+  /* --mino-color-border-strong: var(--border-strong, var(--mino-color-brand-base, var(--brand-base))); */
+  /* --mino-color-border-subtle: var(--border-subtle, #e2e8f0); */
+  /* --mino-color-brand-base: var(--brand-base); */
+  /* --mino-color-brand-border: var(--brand-border); */
+  /* --mino-color-brand-focus: var(--brand-focus); */
+  /* --mino-color-brand-hover: var(--brand-hover); */
+  /* --mino-color-brand-muted: var(--brand-muted); */
+  /* --mino-color-feedback-danger: var(--feedback-danger); */
+  /* --mino-color-feedback-danger-hover: var(--feedback-danger-hover); */
+  /* --mino-color-feedback-danger-muted: var(--feedback-danger-muted); */
+  /* --mino-color-feedback-success: var(--feedback-success); */
+  /* --mino-color-feedback-success-hover: var(--feedback-success-hover); */
+  /* --mino-color-feedback-success-muted: var(--feedback-success-muted); */
+  /* --mino-color-feedback-warning: var(--feedback-warning); */
+  /* --mino-color-feedback-warning-muted: var(--feedback-warning-muted); */
+  /* --mino-color-focus-ring: var(--focus-ring); */
+  /* --mino-color-text-inverse: var(--text-inverse); */
+  /* --mino-color-text-link: var(--text-link); */
+  /* --mino-color-text-link-hover: var(--text-link-hover); */
+  /* --mino-color-text-muted: var(--text-muted); */
+  /* --mino-color-text-primary: var(--text-primary); */
+  /* --mino-color-text-secondary: var(--text-secondary); */
+  /* --mino-font-family-display: var(--font-family-display, var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif))); */
+  /* --mino-font-family-mono: var(--font-family-mono); */
+  /* --mino-font-family-sans: var(--font-family-sans); */
+  /* --mino-font-size-2xl: var(--font-size-2xl); */
+  /* --mino-font-size-3xl: var(--font-size-3xl); */
+  /* --mino-font-size-4xl: var(--font-size-4xl); */
+  /* --mino-font-size-body: var(--font-size-body); */
+  /* --mino-font-size-lg: var(--font-size-lg); */
+  /* --mino-font-size-md: var(--font-size-md); */
+  /* --mino-font-size-sm: var(--font-size-sm); */
+  /* --mino-font-size-xl: var(--font-size-xl); */
+  /* --mino-font-size-xs: var(--font-size-xs); */
+  /* --mino-font-weight-bold: var(--font-weight-bold); */
+  /* --mino-font-weight-extrabold: var(--font-weight-extrabold); */
+  /* --mino-font-weight-medium: var(--font-weight-medium); */
+  /* --mino-font-weight-normal: var(--font-weight-normal); */
+  /* --mino-font-weight-regular: var(--font-weight-regular); */
+  /* --mino-font-weight-semibold: var(--font-weight-semibold); */
+  /* --mino-line-height-body: var(--line-height-body); */
+  /* --mino-line-height-heading: var(--line-height-heading); */
+  /* --mino-line-height-relaxed: var(--line-height-relaxed); */
+  /* --mino-line-height-tight: var(--line-height-tight); */
+  /* --mino-radius-full: var(--radius-full); */
+  /* --mino-radius-lg: var(--radius-lg); */
+  /* --mino-radius-md: var(--radius-md); */
+  /* --mino-radius-sm: var(--radius-sm); */
+  /* --mino-radius-xl: var(--radius-xl); */
+  /* --mino-shadow-2xs: var(--shadow-2xs); */
+  /* --mino-shadow-md: var(--shadow-md); */
+  /* --mino-shadow-sm: var(--shadow-sm); */
+  /* --mino-shadow-xs: var(--shadow-xs); */
+  /* --mino-spacing-2xl: var(--spacing-2xl); */
+  /* --mino-spacing-2xs: var(--spacing-2xs); */
+  /* --mino-spacing-3xl: var(--spacing-3xl); */
+  /* --mino-spacing-3xs: var(--spacing-3xs); */
+  /* --mino-spacing-lg: var(--spacing-lg); */
+  /* --mino-spacing-md: var(--spacing-md); */
+  /* --mino-spacing-sm: var(--spacing-sm); */
+  /* --mino-spacing-xl: var(--spacing-xl); */
+  /* --mino-spacing-xs: var(--spacing-xs); */
+
+  /* ================================================================
+     Shared / cross-component primitives
+     ================================================================ */
+  /* --mino-content-measure: 40rem; */
+  /* --mino-content-measure-wide: 47.5rem; */
+  /* --mino-content-measure-xwide: 50rem; */
+  /* --mino-field-focus-ring-width: 3px; */
+  /* --mino-field-lg-font-size: var(--mino-font-size-md, var(--font-size-md, 16px)); */
+  /* --mino-field-lg-icon-size: 18px; */
+  /* --mino-field-lg-padding-block: 12px; */
+  /* --mino-field-lg-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+  /* --mino-field-md-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-field-md-icon-size: 16px; */
+  /* --mino-field-md-padding-block: 10px; */
+  /* --mino-field-md-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-field-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-field-sm-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-field-sm-icon-size: 14px; */
+  /* --mino-field-sm-padding-block: 6px; */
+  /* --mino-field-sm-padding-inline: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-focus-ring-inset-offset: -2px; */
+  /* --mino-focus-ring-offset: 2px; */
+  /* --mino-focus-ring-width: 2px; */
+  /* --mino-layout-container-padding: var(--layout-container-padding, 1rem); */
+  /* --mino-layout-max-width: var(--layout-max-width, 1300px); */
+  /* --mino-motion-duration-base: 200ms; */
+  /* --mino-motion-duration-fast: 150ms; */
+  /* --mino-motion-duration-slow: 350ms; */
+  /* --mino-motion-duration-slower: 450ms; */
+  /* --mino-motion-easing-decelerate: cubic-bezier(0.22, 1, 0.36, 1); */
+  /* --mino-motion-easing-emphasized: cubic-bezier(0.16, 1, 0.3, 1); */
+  /* --mino-motion-easing-standard: ease; */
+
+  /* ================================================================
+     Core: Accordion
+     ================================================================ */
+  /* --mino-accordion-content-padding-bottom: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-accordion-content-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+  /* --mino-accordion-content-padding-top: var(--mino-spacing-sm, var(--spacing-sm)); */
+  /* --mino-accordion-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-accordion-indicator-duration: 300ms; */
+  /* --mino-accordion-indicator-easing: cubic-bezier(0.34, 1.56, 0.64, 1); */
+  /* --mino-accordion-indicator-size: 28px; */
+  /* --mino-accordion-panel-duration: 300ms; */
+  /* --mino-accordion-panel-opacity-duration: 250ms; */
+  /* --mino-accordion-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-accordion-trigger-font-size: var(--mino-font-size-lg, var(--font-size-lg, 20px)); */
+  /* --mino-accordion-trigger-padding-block: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-accordion-trigger-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+
+  /* ================================================================
+     Core: Avatar
+     ================================================================ */
+  /* --mino-avatar-background: linear-gradient( 135deg, var(--mino-color-bg-canvas, var(--bg-canvas)) 0%, var(--mino-color-bg-surface-hover, var(--bg-surface-hover)) 100% ); */
+  /* --mino-avatar-border-color: var(--mino-color-border-muted, var(--border-muted)); */
+  /* --mino-avatar-border-width: 1px; */
+  /* --mino-avatar-circle-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-avatar-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-avatar-fallback-background: linear-gradient( 135deg, var(--mino-color-brand-muted, var(--brand-muted)) 0%, var(--mino-color-bg-surface-hover, var(--bg-surface-hover)) 100% ); */
+  /* --mino-avatar-fallback-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-avatar-icon-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-avatar-lg-font-size: 18px; */
+  /* --mino-avatar-lg-size: 56px; */
+  /* --mino-avatar-lg-status-offset: 2px; */
+  /* --mino-avatar-lg-status-size: 14px; */
+  /* --mino-avatar-md-font-size: 14px; */
+  /* --mino-avatar-md-size: 40px; */
+  /* --mino-avatar-md-status-offset: 0px; */
+  /* --mino-avatar-md-status-size: 11px; */
+  /* --mino-avatar-sm-font-size: 12px; */
+  /* --mino-avatar-sm-size: 32px; */
+  /* --mino-avatar-sm-status-offset: -1px; */
+  /* --mino-avatar-sm-status-size: 9px; */
+  /* --mino-avatar-square-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-avatar-status-away-background: var(--mino-color-brand-focus, var(--brand-focus, var(--mino-palette-brand-400))); */
+  /* --mino-avatar-status-border-color: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-avatar-status-border-width: 2px; */
+  /* --mino-avatar-status-busy-background: var(--mino-color-feedback-danger, var(--feedback-danger)); */
+  /* --mino-avatar-status-offline-background: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-avatar-status-online-background: var(--mino-color-feedback-success, var(--feedback-success)); */
+  /* --mino-avatar-xl-font-size: 26px; */
+  /* --mino-avatar-xl-size: 80px; */
+  /* --mino-avatar-xl-status-offset: 3px; */
+  /* --mino-avatar-xl-status-size: 18px; */
+  /* --mino-avatar-xs-font-size: 10px; */
+  /* --mino-avatar-xs-size: 24px; */
+  /* --mino-avatar-xs-status-offset: -1px; */
+  /* --mino-avatar-xs-status-size: 7px; */
+
+  /* ================================================================
+     Core: Badge
+     ================================================================ */
+  /* --mino-badge-border-width: 1px; */
+  /* --mino-badge-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-badge-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-badge-font-weight: var(--mino-font-weight-medium, var(--font-weight-medium, 500)); */
+  /* --mino-badge-gap: var(--mino-spacing-xs, var(--spacing-xs, 6px)); */
+  /* --mino-badge-padding-block: 3px; */
+  /* --mino-badge-padding-inline: var(--mino-spacing-sm, var(--spacing-sm, 10px)); */
+  /* --mino-badge-pill-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-badge-radius: var(--mino-radius-sm, var(--radius-sm, 6px)); */
+  /* --mino-badge-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 1px 2px rgba(0, 0, 0, 0.04))); */
+
+  /* ================================================================
+     Core: Breadcrumbs
+     ================================================================ */
+  /* --mino-breadcrumbs-current-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-breadcrumbs-current-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+  /* --mino-breadcrumbs-focus-ring-color: var(--mino-color-brand-focus, var(--brand-focus)); */
+  /* --mino-breadcrumbs-focus-ring-offset: var(--mino-focus-ring-offset, 2px); */
+  /* --mino-breadcrumbs-focus-ring-width: var(--mino-focus-ring-width, 2px); */
+  /* --mino-breadcrumbs-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-breadcrumbs-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-breadcrumbs-line-height: var(--mino-line-height-body, var(--line-height-body, 1.5)); */
+  /* --mino-breadcrumbs-link-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-breadcrumbs-link-font-weight: var(--mino-font-weight-medium, var(--font-weight-medium, 500)); */
+  /* --mino-breadcrumbs-link-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+  /* --mino-breadcrumbs-separator-color: var(--mino-color-text-muted, var(--text-muted)); */
+  /* --mino-breadcrumbs-separator-gap: var(--mino-spacing-xs, var(--spacing-xs, 6px)); */
+
+  /* ================================================================
+     Core: Button
+     ================================================================ */
+  /* --mino-button-border-width: 2px; */
+  /* --mino-button-font-size: var(--btn-font-size, var(--mino-font-size-md, var(--font-size-md))); */
+  /* --mino-button-gap: var(--btn-gap, var(--mino-spacing-sm, var(--spacing-sm))); */
+  /* --mino-button-glass-blur: 8px; */
+  /* --mino-button-icon-size: 1.25em; */
+  /* --mino-button-lg-font-size: var(--mino-font-size-lg, var(--font-size-lg)); */
+  /* --mino-button-lg-min-height: 52px; */
+  /* --mino-button-lg-padding-block: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-button-lg-padding-inline: var(--mino-spacing-lg, var(--spacing-lg)); */
+  /* --mino-button-md-font-size: var(--mino-font-size-md, var(--font-size-md)); */
+  /* --mino-button-md-min-height: 44px; */
+  /* --mino-button-md-padding-block: var(--mino-spacing-sm, var(--spacing-sm)); */
+  /* --mino-button-md-padding-inline: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-button-min-height: var(--btn-min-height); */
+  /* --mino-button-padding-block: var(--btn-padding-y, var(--mino-spacing-sm, var(--spacing-sm))); */
+  /* --mino-button-padding-inline: var(--btn-padding-x, var(--mino-spacing-md, var(--spacing-md))); */
+  /* --mino-button-radius: var(--btn-radius, var(--mino-radius-md, var(--radius-md))); */
+  /* --mino-button-sm-font-size: var(--mino-font-size-sm, var(--font-size-sm)); */
+  /* --mino-button-sm-min-height: 36px; */
+  /* --mino-button-sm-padding-block: var(--mino-spacing-xs, var(--spacing-xs)); */
+  /* --mino-button-sm-padding-inline: var(--mino-spacing-sm, var(--spacing-sm)); */
+  /* --mino-button-spinner-duration: 800ms; */
+  /* --mino-button-transition-duration: var(--mino-motion-duration-base, 200ms); */
+
+  /* ================================================================
+     Core: ButtonGroup
+     ================================================================ */
+  /* --mino-button-group-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+
+  /* ================================================================
+     Core: Calendar
+     ================================================================ */
+  /* --mino-calendar-background: var(--calendar-bg, var(--mino-color-bg-surface, var(--bg-surface, #ffffff))); */
+  /* --mino-calendar-border-color: var(--mino-color-border-default, var(--border-default, #e2e8f0)); */
+  /* --mino-calendar-border-width: 1px; */
+  /* --mino-calendar-day-gap: var(--mino-spacing-2xs, var(--spacing-2xs, 2px)); */
+  /* --mino-calendar-day-radius: var(--mino-radius-md, var(--radius-md, 6px)); */
+  /* --mino-calendar-day-size: 36px; */
+  /* --mino-calendar-disabled-opacity: 0.35; */
+  /* --mino-calendar-focus-ring-color: var(--mino-color-brand-focus, var(--brand-focus, #3b82f6)); */
+  /* --mino-calendar-helper-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-calendar-label-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-calendar-max-width: 320px; */
+  /* --mino-calendar-month-font-size: var(--mino-font-size-md, var(--font-size-md, 15px)); */
+  /* --mino-calendar-nav-size: 30px; */
+  /* --mino-calendar-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-calendar-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-calendar-selected-background: var(--mino-color-brand-base, var(--brand-base, #2563eb)); */
+  /* --mino-calendar-selected-color: var(--mino-color-text-inverse, var(--text-inverse, #ffffff)); */
+  /* --mino-calendar-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05))); */
+  /* --mino-calendar-today-border-color: var(--mino-color-brand-border, var(--brand-border, var(--mino-color-brand-base, var(--brand-base)))); */
+  /* --mino-calendar-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-calendar-weekday-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+
+  /* ================================================================
+     Core: Card
+     ================================================================ */
+  /* --mino-card-background: var(--card-bg, var(--mino-color-bg-surface, var(--bg-surface))); */
+  /* --mino-card-body-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-card-body-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-card-border-color: var(--card-border, var(--mino-color-border-default, var(--border-default))); */
+  /* --mino-card-border-width: 1px; */
+  /* --mino-card-color: var(--card-color, var(--mino-color-text-primary, var(--text-primary))); */
+  /* --mino-card-focus-ring-color: var(--mino-color-brand-focus, var(--brand-focus)); */
+  /* --mino-card-focus-ring-offset: var(--mino-focus-ring-offset, 2px); */
+  /* --mino-card-focus-ring-width: var(--mino-focus-ring-width, 2px); */
+  /* --mino-card-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-card-footer-border-color: var(--mino-color-border-muted, var(--border-muted)); */
+  /* --mino-card-footer-border-width: 1px; */
+  /* --mino-card-footer-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-card-footer-padding-top: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-card-glass-background: var(--card-glass-bg, var(--mino-color-bg-surface, var(--bg-surface))); */
+  /* --mino-card-glass-blur: 12px; */
+  /* --mino-card-glass-border-color: var(--card-glass-border, var(--mino-color-border-muted, var(--border-muted))); */
+  /* --mino-card-header-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-card-hover-border-color: var(--mino-color-brand-border, var(--brand-border)); */
+  /* --mino-card-hover-offset: -2px; */
+  /* --mino-card-radius: var(--mino-radius-md, var(--radius-md, 16px)); */
+
+  /* ================================================================
+     Core: Carousel
+     ================================================================ */
+  /* --mino-carousel-active-dot-width: 24px; */
+  /* --mino-carousel-collapse-duration: var(--mino-motion-duration-slower, 450ms); */
+  /* --mino-carousel-control-size: 36px; */
+  /* --mino-carousel-dot-size: 8px; */
+  /* --mino-carousel-expand-duration: 700ms; */
+  /* --mino-carousel-expand-easing: var(--mino-motion-easing-decelerate, cubic-bezier(0.22, 1, 0.36, 1)); */
+  /* --mino-carousel-expanded-easing: cubic-bezier(0.4, 0, 0.2, 1); */
+  /* --mino-carousel-focus-offset: 4px; */
+  /* --mino-carousel-gap: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-carousel-item-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-carousel-media-radius: var(--mino-radius-lg, var(--radius-lg, 8px)); */
+  /* --mino-carousel-mobile-item-duration: 300ms; */
+  /* --mino-carousel-mobile-peek: 7.5%; */
+  /* --mino-carousel-page-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-carousel-rotation-control-min-width: 56px; */
+  /* --mino-carousel-slide-duration: var(--mino-motion-duration-slower, 450ms); */
+  /* --mino-carousel-slide-easing: var(--mino-motion-easing-emphasized, cubic-bezier(0.16, 1, 0.3, 1)); */
+  /* --mino-carousel-track-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+
+  /* ================================================================
+     Core: Checkbox
+     ================================================================ */
+  /* --mino-checkbox-icon-size: 12px; */
+  /* --mino-checkbox-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+  /* --mino-checkbox-size: 18px; */
+
+  /* ================================================================
+     Core: Container
+     ================================================================ */
+  /* --mino-container-2xl-max-width: 1536px; */
+  /* --mino-container-gutter: var(--mino-layout-container-padding, var(--layout-container-padding, 1rem)); */
+  /* --mino-container-gutter-lg: 2rem; */
+  /* --mino-container-gutter-md: 1.5rem; */
+  /* --mino-container-lg-max-width: 1024px; */
+  /* --mino-container-md-max-width: 768px; */
+  /* --mino-container-sm-max-width: 640px; */
+  /* --mino-container-xl-max-width: 1280px; */
+
+  /* ================================================================
+     Core: DatePicker
+     ================================================================ */
+  /* --mino-date-picker-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-date-picker-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-date-picker-border-width: 1px; */
+  /* --mino-date-picker-disabled-background: var(--mino-color-bg-canvas, var(--bg-canvas)); */
+  /* --mino-date-picker-disabled-border-color: var(--mino-color-border-muted, var(--border-muted)); */
+  /* --mino-date-picker-error-border-color: var(--mino-color-feedback-danger, var(--feedback-danger)); */
+  /* --mino-date-picker-focus-border-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-date-picker-focus-ring-color: var(--mino-color-brand-muted, var(--brand-muted)); */
+  /* --mino-date-picker-focus-ring-width: var(--mino-field-focus-ring-width, 3px); */
+  /* --mino-date-picker-hover-border-color: var(--mino-color-brand-border, var(--brand-border)); */
+  /* --mino-date-picker-icon-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-date-picker-indicator-opacity: 0.6; */
+  /* --mino-date-picker-message-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-date-picker-radius: var(--mino-field-radius, var(--mino-radius-md, var(--radius-md, 8px))); */
+  /* --mino-date-picker-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 1px 2px rgba(0, 0, 0, 0.04))); */
+  /* --mino-date-picker-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+
+  /* ================================================================
+     Core: Divider
+     ================================================================ */
+  /* --mino-divider-color: var(--mino-color-border-default, var(--border-default, #e2e8f0)); */
+  /* --mino-divider-content-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-divider-font-size: 0.8125rem; */
+  /* --mino-divider-font-weight: 500; */
+  /* --mino-divider-margin-block: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-divider-short-line-length: 24px; */
+  /* --mino-divider-text-color: var(--mino-color-text-secondary, var(--text-secondary, #64748b)); */
+  /* --mino-divider-thickness: 1px; */
+
+  /* ================================================================
+     Core: Drawer
+     ================================================================ */
+  /* --mino-drawer-backdrop-background: rgba(15, 23, 42, 0.4); */
+  /* --mino-drawer-backdrop-blur: 2px; */
+  /* --mino-drawer-background: var(--drawer-bg, #ffffff); */
+  /* --mino-drawer-body-padding: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-drawer-close-size: 32px; */
+  /* --mino-drawer-description-font-size: 0.875rem; */
+  /* --mino-drawer-footer-background: var(--drawer-footer-bg, #f8fafc); */
+  /* --mino-drawer-footer-padding-block: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-drawer-footer-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-drawer-header-padding-block: var(--mino-spacing-md, var(--spacing-md, 20px)); */
+  /* --mino-drawer-header-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-drawer-lg-height: 560px; */
+  /* --mino-drawer-lg-width: 600px; */
+  /* --mino-drawer-md-height: 380px; */
+  /* --mino-drawer-md-width: 440px; */
+  /* --mino-drawer-panel-duration: var(--mino-motion-duration-slow, 250ms); */
+  /* --mino-drawer-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); */
+  /* --mino-drawer-sm-height: 240px; */
+  /* --mino-drawer-sm-width: 320px; */
+  /* --mino-drawer-title-font-size: 1.125rem; */
+  /* --mino-drawer-xl-height: 720px; */
+  /* --mino-drawer-xl-width: 800px; */
+  /* --mino-drawer-z-index: var(--z-index-modal, 2000); */
+
+  /* ================================================================
+     Core: FieldSet
+     ================================================================ */
+  /* --mino-fieldset-background: var(--bg-paper, #ffffff); */
+  /* --mino-fieldset-border-color: var(--border-color, #e2e8f0); */
+  /* --mino-fieldset-border-width: 1px; */
+  /* --mino-fieldset-content-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-fieldset-description-color: var(--mino-color-text-secondary, var(--text-secondary, #64748b)); */
+  /* --mino-fieldset-description-font-size: var(--mino-font-size-sm, var(--font-size-sm, 13px)); */
+  /* --mino-fieldset-disabled-opacity: 0.6; */
+  /* --mino-fieldset-error-color: var(--color-error, #ef4444); */
+  /* --mino-fieldset-error-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-fieldset-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-fieldset-legend-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-fieldset-legend-font-size: var(--font-size-base, 16px); */
+  /* --mino-fieldset-legend-font-weight: 600; */
+  /* --mino-fieldset-padding: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+  /* --mino-fieldset-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+
+  /* ================================================================
+     Core: FileUpload
+     ================================================================ */
+  /* --mino-file-upload-accent-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-file-upload-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-file-upload-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-file-upload-border-width: 2px; */
+  /* --mino-file-upload-disabled-opacity: 0.55; */
+  /* --mino-file-upload-drag-background: var(--mino-color-brand-muted, var(--brand-muted)); */
+  /* --mino-file-upload-drag-border-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-file-upload-drag-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 4px 12px rgba(0, 0, 0, 0.08))); */
+  /* --mino-file-upload-dropzone-padding: var(--mino-spacing-xl, var(--spacing-xl, 24px)); */
+  /* --mino-file-upload-file-padding-block: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+  /* --mino-file-upload-file-padding-inline: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-file-upload-file-radius: var(--mino-radius-md, var(--radius-md, 6px)); */
+  /* --mino-file-upload-focus-ring-color: var(--mino-color-brand-focus, var(--brand-focus)); */
+  /* --mino-file-upload-gap: var(--mino-spacing-xs, var(--spacing-xs, 6px)); */
+  /* --mino-file-upload-hover-background: var(--mino-color-bg-surface-hover, var(--bg-surface-hover)); */
+  /* --mino-file-upload-hover-border-color: var(--mino-color-brand-border, var(--brand-border)); */
+  /* --mino-file-upload-icon-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-file-upload-icon-size: 32px; */
+  /* --mino-file-upload-list-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+  /* --mino-file-upload-prompt-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-file-upload-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-file-upload-remove-size: 28px; */
+  /* --mino-file-upload-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+
+  /* ================================================================
+     Core: FloatingActionButton
+     ================================================================ */
+  /* --mino-fab-action-background: var(--fab-action-bg, #ffffff); */
+  /* --mino-fab-action-color: var(--fab-action-text, #334155); */
+  /* --mino-fab-action-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); */
+  /* --mino-fab-action-size: 40px; */
+  /* --mino-fab-action-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-fab-background: var(--fab-bg, #2563eb); */
+  /* --mino-fab-badge-background: var(--fab-badge-bg, #ef4444); */
+  /* --mino-fab-badge-border-color: #ffffff; */
+  /* --mino-fab-badge-border-width: 2px; */
+  /* --mino-fab-badge-color: #ffffff; */
+  /* --mino-fab-badge-font-size: 0.6875rem; */
+  /* --mino-fab-color: var(--fab-text, #ffffff); */
+  /* --mino-fab-container-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-fab-edge-offset: var(--mino-fab-edge-offset, var(--mino-spacing-lg, var(--spacing-lg, 24px))); */
+  /* --mino-fab-hover-background: var(--fab-hover-bg, #1d4ed8); */
+  /* --mino-fab-hover-shadow: 0 14px 20px -3px rgba(37, 99, 235, 0.4), 0 6px 8px -4px rgba(37, 99, 235, 0.25); */
+  /* --mino-fab-icon-size: 22px; */
+  /* --mino-fab-lg-size: 64px; */
+  /* --mino-fab-md-size: 52px; */
+  /* --mino-fab-menu-background: var(--fab-menu-bg, #0f172a); */
+  /* --mino-fab-menu-color: var(--fab-menu-text, #ffffff); */
+  /* --mino-fab-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3), 0 4px 6px -4px rgba(37, 99, 235, 0.2); */
+  /* --mino-fab-sm-size: 40px; */
+  /* --mino-fab-transition-duration: var(--mino-motion-duration-base, 200ms); */
+  /* --mino-fab-transition-easing: var(--mino-motion-easing-emphasized, cubic-bezier(0.16, 1, 0.3, 1)); */
+  /* --mino-fab-z-index: 1500; */
+
+  /* ================================================================
+     Core: Footer
+     ================================================================ */
+  /* --mino-footer-background: var(--footer-bg, #ffffff); */
+  /* --mino-footer-badge-background: var(--badge-bg, #eff6ff); */
+  /* --mino-footer-badge-color: var(--badge-text, #2563eb); */
+  /* --mino-footer-border-color: var(--mino-color-border-muted, var(--border-muted, rgba(0, 0, 0, 0.08))); */
+  /* --mino-footer-border-width: 1px; */
+  /* --mino-footer-brand-column-width: 300px; */
+  /* --mino-footer-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-footer-column-title-font-size: 0.875rem; */
+  /* --mino-footer-column-title-font-weight: 600; */
+  /* --mino-footer-copyright-font-size: 0.8125rem; */
+  /* --mino-footer-description-color: var(--mino-color-text-secondary, var(--text-secondary, #64748b)); */
+  /* --mino-footer-description-font-size: 0.875rem; */
+  /* --mino-footer-description-line-height: 1.5; */
+  /* --mino-footer-legal-font-size: 0.8125rem; */
+  /* --mino-footer-link-column-min-width: 140px; */
+  /* --mino-footer-link-font-size: 0.875rem; */
+  /* --mino-footer-link-hover-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-footer-logo-font-size: 1.125rem; */
+  /* --mino-footer-max-width: 1280px; */
+  /* --mino-footer-padding-bottom: var(--mino-spacing-lg, var(--spacing-lg, 32px)); */
+  /* --mino-footer-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-footer-padding-top: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-footer-social-color: var(--icon-muted, #64748b); */
+
+  /* ================================================================
+     Core: Form
+     ================================================================ */
+  /* --mino-form-gap: var(--mino-spacing-md, var(--spacing-md, 20px)); */
+
+  /* ================================================================
+     Core: Heading
+     ================================================================ */
+  /* --mino-heading-color: var(--heading-color, var(--mino-color-text-primary, var(--text-primary))); */
+  /* --mino-heading-font-family: var(--mino-font-family-display, var(--font-family-display, var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)))); */
+  /* --mino-heading-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-heading-letter-spacing: -0.02em; */
+  /* --mino-heading-line-height: var(--mino-line-height-heading, var(--line-height-heading, 1.2)); */
+
+  /* ================================================================
+     Core: Label
+     ================================================================ */
+  /* --mino-label-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-label-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-label-font-weight: var(--mino-font-weight-medium, var(--font-weight-medium, 500)); */
+  /* --mino-label-gap: var(--mino-spacing-2xs, var(--spacing-2xs, 4px)); */
+  /* --mino-label-line-height: var(--mino-line-height-body, var(--line-height-body, 1.4)); */
+  /* --mino-label-optional-color: var(--mino-color-text-muted, var(--text-muted)); */
+  /* --mino-label-required-color: var(--mino-color-feedback-danger, var(--feedback-danger)); */
+
+  /* ================================================================
+     Core: List
+     ================================================================ */
+  /* --mino-list-avatar-background: var(--avatar-bg, #f1f5f9); */
+  /* --mino-list-avatar-size: 40px; */
+  /* --mino-list-background: var(--list-bg, #ffffff); */
+  /* --mino-list-badge-background: var(--badge-bg, #eff6ff); */
+  /* --mino-list-badge-color: var(--badge-text, #2563eb); */
+  /* --mino-list-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-list-description-font-size: 0.8125rem; */
+  /* --mino-list-header-background: var(--header-bg, #f8fafc); */
+  /* --mino-list-header-font-size: 0.75rem; */
+  /* --mino-list-header-font-weight: 700; */
+  /* --mino-list-hover-background: var(--hover-bg, rgba(0, 0, 0, 0.03)); */
+  /* --mino-list-icon-color: var(--icon-muted, #64748b); */
+  /* --mino-list-icon-size: 20px; */
+  /* --mino-list-item-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-list-selected-background: var(--selected-bg, #eff6ff); */
+  /* --mino-list-title-font-size: 0.9375rem; */
+  /* --mino-list-title-font-weight: 600; */
+  /* --mino-list-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+
+  /* ================================================================
+     Core: Modal
+     ================================================================ */
+  /* --mino-modal-backdrop-blur: 4px; */
+  /* --mino-modal-backdrop-duration: var(--mino-motion-duration-base, 200ms); */
+  /* --mino-modal-background: var(--modal-bg, #ffffff); */
+  /* --mino-modal-body-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-modal-border-color: var(--mino-color-border-muted, var(--border-muted, rgba(0, 0, 0, 0.08))); */
+  /* --mino-modal-border-width: 1px; */
+  /* --mino-modal-close-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-modal-close-size: 32px; */
+  /* --mino-modal-control-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-modal-description-font-size: 0.875rem; */
+  /* --mino-modal-dialog-duration: var(--mino-motion-duration-slow, 250ms); */
+  /* --mino-modal-footer-background: var(--footer-bg, #f8fafc); */
+  /* --mino-modal-footer-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-modal-header-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-modal-lg-max-width: 720px; */
+  /* --mino-modal-md-max-width: 560px; */
+  /* --mino-modal-overlay-background: rgba(15, 23, 42, 0.5); */
+  /* --mino-modal-overlay-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-modal-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05); */
+  /* --mino-modal-sm-max-width: 400px; */
+  /* --mino-modal-title-font-size: 1.125rem; */
+  /* --mino-modal-xl-max-width: 960px; */
+  /* --mino-modal-z-index: var(--z-index-modal, 2000); */
+
+  /* ================================================================
+     Core: Navigation
+     ================================================================ */
+  /* --mino-navigation-dropdown-duration: var(--mino-motion-duration-base, 200ms); */
+  /* --mino-navigation-dropdown-min-width: 260px; */
+  /* --mino-navigation-floating-blur: 16px; */
+  /* --mino-navigation-floating-padding-block: var(--mino-spacing-sm, var(--spacing-sm)); */
+  /* --mino-navigation-floating-padding-inline: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-floating-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-navigation-gap: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-glass-blur: 20px; */
+  /* --mino-navigation-glass-saturation: 180%; */
+  /* --mino-navigation-item-gap: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-link-font-size: 0.9375rem; */
+  /* --mino-navigation-link-padding: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-link-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-navigation-link-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-navigation-logo-font-size: 1.125rem; */
+  /* --mino-navigation-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1200px)); */
+  /* --mino-navigation-mobile-padding-bottom: 32px; */
+  /* --mino-navigation-mobile-padding-inline: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-mobile-padding-top: 80px; */
+  /* --mino-navigation-motion-duration: var(--mino-motion-duration-slow, 250ms); */
+  /* --mino-navigation-motion-easing: var(--mino-motion-easing-emphasized, cubic-bezier(0.16, 1, 0.3, 1)); */
+  /* --mino-navigation-padding-block: var(--mino-spacing-sm, var(--spacing-sm)); */
+  /* --mino-navigation-padding-inline: var(--mino-spacing-md, var(--spacing-md)); */
+  /* --mino-navigation-standard-blur: 12px; */
+  /* --mino-navigation-sub-icon-size: 20px; */
+
+  /* ================================================================
+     Core: Notification
+     ================================================================ */
+  /* --mino-notification-accent-width: 4px; */
+  /* --mino-notification-action-padding-block: 4px; */
+  /* --mino-notification-action-padding-inline: 10px; */
+  /* --mino-notification-action-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+  /* --mino-notification-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-notification-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-notification-border-width: 1px; */
+  /* --mino-notification-close-size: 24px; */
+  /* --mino-notification-container-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-notification-content-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-notification-enter-duration: 280ms; */
+  /* --mino-notification-exit-duration: 240ms; */
+  /* --mino-notification-icon-size: 24px; */
+  /* --mino-notification-max-width: 380px; */
+  /* --mino-notification-message-font-size: var(--mino-font-size-xs, var(--font-size-xs, 13px)); */
+  /* --mino-notification-motion-distance: 20px; */
+  /* --mino-notification-padding: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-notification-progress-height: 3px; */
+  /* --mino-notification-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-notification-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); */
+  /* --mino-notification-stack-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-notification-title-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-notification-z-index: var(--z-index-toast, 200); */
+
+  /* ================================================================
+     Core: ProgressBar
+     ================================================================ */
+  /* --mino-progress-indeterminate-duration: 1500ms; */
+  /* --mino-progress-indeterminate-easing: cubic-bezier(0.4, 0, 0.2, 1); */
+  /* --mino-progress-lg-height: 12px; */
+  /* --mino-progress-md-height: 8px; */
+  /* --mino-progress-sm-height: 4px; */
+  /* --mino-progress-transition: var(--transition-medium, 0.25s ease); */
+
+  /* ================================================================
+     Core: Radio
+     ================================================================ */
+  /* --mino-radio-dot-size: 8px; */
+  /* --mino-radio-size: 18px; */
+
+  /* ================================================================
+     Core: Range
+     ================================================================ */
+  /* --mino-range-control-height: 24px; */
+  /* --mino-range-error-color: var(--mino-color-feedback-danger, var(--feedback-danger)); */
+  /* --mino-range-fill-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-range-focus-ring-color: var(--mino-color-brand-muted, var(--brand-muted)); */
+  /* --mino-range-focus-ring-width: 3px; */
+  /* --mino-range-gap: var(--mino-spacing-xs, var(--spacing-xs, 6px)); */
+  /* --mino-range-thumb-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-range-thumb-border-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-range-thumb-border-width: 2px; */
+  /* --mino-range-thumb-hover-scale: 1.1; */
+  /* --mino-range-thumb-size: 18px; */
+  /* --mino-range-track-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-range-track-height: 6px; */
+  /* --mino-range-track-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-range-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-range-value-padding-block: 2px; */
+  /* --mino-range-value-padding-inline: 8px; */
+  /* --mino-range-value-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+
+  /* ================================================================
+     Core: Select
+     ================================================================ */
+  /* --mino-select-multi-min-height: 120px; */
+
+  /* ================================================================
+     Core: Sidebar
+     ================================================================ */
+  /* --mino-sidebar-backdrop-blur: 2px; */
+  /* --mino-sidebar-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-sidebar-body-padding: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+  /* --mino-sidebar-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-sidebar-border-width: 1px; */
+  /* --mino-sidebar-close-radius: var(--mino-radius-sm, var(--radius-sm, 6px)); */
+  /* --mino-sidebar-close-size: 32px; */
+  /* --mino-sidebar-enter-duration: var(--mino-motion-duration-slow, 280ms); */
+  /* --mino-sidebar-exit-duration: 240ms; */
+  /* --mino-sidebar-header-padding-block: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-sidebar-header-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 20px)); */
+  /* --mino-sidebar-lg-width: 540px; */
+  /* --mino-sidebar-md-width: 380px; */
+  /* --mino-sidebar-overlay-background: rgba(15, 23, 42, 0.4); */
+  /* --mino-sidebar-overlay-enter-duration: var(--mino-motion-duration-base, 200ms); */
+  /* --mino-sidebar-overlay-exit-duration: var(--mino-motion-duration-base, 200ms); */
+  /* --mino-sidebar-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12); */
+  /* --mino-sidebar-sm-width: 280px; */
+  /* --mino-sidebar-title-font-size: var(--mino-font-size-md, var(--font-size-md, 16px)); */
+  /* --mino-sidebar-z-index: var(--z-index-modal, 100); */
+
+  /* ================================================================
+     Core: Skeleton
+     ================================================================ */
+  /* --mino-skeleton-background: var(--mino-palette-neutral-400); */
+  /* --mino-skeleton-circle-lg-size: 56px; */
+  /* --mino-skeleton-circle-md-size: 40px; */
+  /* --mino-skeleton-circle-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-skeleton-circle-sm-size: 24px; */
+  /* --mino-skeleton-circle-xs-size: 18px; */
+  /* --mino-skeleton-duration: 1600ms; */
+  /* --mino-skeleton-easing: ease-in-out; */
+  /* --mino-skeleton-highlight: var(--mino-palette-neutral-200); */
+  /* --mino-skeleton-rect-lg-height: 48px; */
+  /* --mino-skeleton-rect-md-height: 40px; */
+  /* --mino-skeleton-rect-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-skeleton-rect-sm-height: 32px; */
+  /* --mino-skeleton-rect-xs-height: 24px; */
+  /* --mino-skeleton-text-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+
+  /* ================================================================
+     Core: Spinner
+     ================================================================ */
+  /* --mino-spinner-color: var(--mino-color-brand-base, var(--brand-base, #3b82f6)); */
+  /* --mino-spinner-glow-color: rgba(59, 130, 246, 0.25); */
+  /* --mino-spinner-lg-size: 48px; */
+  /* --mino-spinner-lg-stroke-width: 3.5px; */
+  /* --mino-spinner-md-size: 36px; */
+  /* --mino-spinner-md-stroke-width: 3px; */
+  /* --mino-spinner-pulse-duration: 1600ms; */
+  /* --mino-spinner-sm-size: 24px; */
+  /* --mino-spinner-sm-stroke-width: 2.5px; */
+  /* --mino-spinner-spin-duration: 800ms; */
+  /* --mino-spinner-spin-easing: cubic-bezier(0.4, 0.15, 0.25, 1); */
+  /* --mino-spinner-track-color: var(--border-color-light, rgba(226, 232, 240, 0.6)); */
+  /* --mino-spinner-xl-size: 64px; */
+  /* --mino-spinner-xl-stroke-width: 4px; */
+  /* --mino-spinner-xs-size: 16px; */
+  /* --mino-spinner-xs-stroke-width: 2px; */
+
+  /* ================================================================
+     Core: Stack
+     ================================================================ */
+
+  /* ================================================================
+     Core: Switch
+     ================================================================ */
+  /* --mino-switch-checked-background: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-switch-checked-hover-background: var(--mino-color-brand-border, var(--brand-border)); */
+  /* --mino-switch-disabled-opacity: 0.55; */
+  /* --mino-switch-field-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-switch-focus-ring-color: var(--mino-color-brand-muted, var(--brand-muted)); */
+  /* --mino-switch-focus-ring-width: 3px; */
+  /* --mino-switch-hover-background: var(--mino-color-border-muted, var(--border-muted)); */
+  /* --mino-switch-lg-height: 30px; */
+  /* --mino-switch-lg-thumb-size: 26px; */
+  /* --mino-switch-lg-travel: 26px; */
+  /* --mino-switch-lg-width: 56px; */
+  /* --mino-switch-md-height: 24px; */
+  /* --mino-switch-md-thumb-size: 20px; */
+  /* --mino-switch-md-travel: 20px; */
+  /* --mino-switch-md-width: 44px; */
+  /* --mino-switch-sm-height: 18px; */
+  /* --mino-switch-sm-thumb-size: 14px; */
+  /* --mino-switch-sm-travel: 14px; */
+  /* --mino-switch-sm-width: 32px; */
+  /* --mino-switch-thumb-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-switch-thumb-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 1px 2px rgba(0, 0, 0, 0.12))); */
+  /* --mino-switch-track-background: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-switch-track-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-switch-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+
+  /* ================================================================
+     Core: Table
+     ================================================================ */
+  /* --mino-table-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-table-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-table-border-width: 1px; */
+  /* --mino-table-cell-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-table-cell-padding-block: var(--mino-spacing-md, var(--spacing-md, 14px)); */
+  /* --mino-table-cell-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-table-head-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-table-head-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-table-head-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+  /* --mino-table-head-padding-block: var(--mino-spacing-sm, var(--spacing-sm, 10px)); */
+  /* --mino-table-head-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-table-header-background: var(--mino-color-bg-canvas, var(--bg-canvas)); */
+  /* --mino-table-hover-background: var(--mino-color-bg-canvas, var(--bg-canvas)); */
+  /* --mino-table-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-table-selected-background: var(--mino-color-brand-muted, var(--brand-muted)); */
+  /* --mino-table-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 1px 2px rgba(0, 0, 0, 0.04))); */
+
+  /* ================================================================
+     Core: Tabs
+     ================================================================ */
+  /* --mino-tabs-focus-ring-width: var(--mino-field-focus-ring-width, 3px); */
+  /* --mino-tabs-indicator-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-tabs-indicator-transition: var(--transition-fast, 0.25s cubic-bezier(0.16, 1, 0.3, 1)); */
+  /* --mino-tabs-list-gap: 4px; */
+  /* --mino-tabs-list-padding: var(--mino-spacing-xs, var(--spacing-xs)); */
+  /* --mino-tabs-list-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-tabs-panel-transition: var(--transition-fast, 0.2s cubic-bezier(0.16, 1, 0.3, 1)); */
+  /* --mino-tabs-trigger-padding-block: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+  /* --mino-tabs-trigger-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-tabs-trigger-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-tabs-vertical-gap: var(--mino-spacing-xl, var(--spacing-xl, 24px)); */
+  /* --mino-tabs-vertical-list-min-width: 180px; */
+
+  /* ================================================================
+     Core: Text
+     ================================================================ */
+  /* --mino-text-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-text-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-text-font-weight: var(--mino-font-weight-regular, var(--font-weight-regular, 400)); */
+  /* --mino-text-line-height: var(--mino-line-height-body, var(--line-height-body, 1.5)); */
+
+  /* ================================================================
+     Core: Tooltip
+     ================================================================ */
+  /* --mino-tooltip-arrow-size: 5px; */
+  /* --mino-tooltip-background: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-tooltip-color: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-tooltip-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-tooltip-light-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-tooltip-light-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 4px 12px rgba(0, 0, 0, 0.08))); */
+  /* --mino-tooltip-max-width: 20rem; */
+  /* --mino-tooltip-offset: 6px; */
+  /* --mino-tooltip-padding-block: 6px; */
+  /* --mino-tooltip-padding-inline: var(--mino-spacing-sm, var(--spacing-sm, 10px)); */
+  /* --mino-tooltip-radius: var(--mino-radius-sm, var(--radius-sm, 6px)); */
+  /* --mino-tooltip-shadow: var(--mino-shadow-2xs, var(--shadow-2xs, 0 2px 4px rgba(0, 0, 0, 0.12))); */
+  /* --mino-tooltip-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-tooltip-white-space: nowrap; */
+  /* --mino-tooltip-z-index: var(--z-index-tooltip, 50); */
+
+  /* ================================================================
+     Block: AccordionBlock
+     ================================================================ */
+  /* --mino-accordion-block-actions-margin-top: var(--mino-spacing-xs, var(--spacing-xs, 4px)); */
+  /* --mino-accordion-block-container-gap: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-accordion-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-accordion-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-accordion-block-description-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-accordion-block-description-font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px)); */
+  /* --mino-accordion-block-description-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-accordion-block-description-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-accordion-block-disclaimer-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-accordion-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-accordion-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-accordion-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-accordion-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-accordion-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-accordion-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-accordion-block-split-gap: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-accordion-block-title-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-accordion-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: CarouselBlock
+     ================================================================ */
+  /* --mino-carousel-block-actions-margin-top: var(--mino-spacing-xs, var(--spacing-xs, 4px)); */
+  /* --mino-carousel-block-container-gap: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-carousel-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-carousel-block-description-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-carousel-block-description-font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px)); */
+  /* --mino-carousel-block-description-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-carousel-block-description-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-carousel-block-disclaimer-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-carousel-block-disclaimer-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-carousel-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-carousel-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-carousel-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-carousel-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-carousel-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-carousel-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-carousel-block-title-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-carousel-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: ContentBlock
+     ================================================================ */
+  /* --mino-content-block-actions-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-content-block-actions-margin-top: var(--mino-spacing-xs, var(--spacing-xs, 4px)); */
+  /* --mino-content-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-content-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-content-block-description-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-content-block-description-font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px)); */
+  /* --mino-content-block-description-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-content-block-description-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-content-block-disclaimer-color: var(--mino-color-text-secondary, var(--text-secondary, #64748b)); */
+  /* --mino-content-block-disclaimer-font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px)); */
+  /* --mino-content-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-content-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-content-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-content-block-gap: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-content-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-content-block-media-lg-size: 360px; */
+  /* --mino-content-block-media-md-size: 240px; */
+  /* --mino-content-block-media-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-content-block-media-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 4px 12px rgba(0, 0, 0, 0.05))); */
+  /* --mino-content-block-media-sm-size: 160px; */
+  /* --mino-content-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-content-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-content-block-split-content-basis: 35; */
+  /* --mino-content-block-split-media-basis: 65; */
+  /* --mino-content-block-title-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-content-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: DocumentListBlock
+     ================================================================ */
+  /* --mino-document-list-card-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-document-list-card-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-document-list-card-border-width: 1px; */
+  /* --mino-document-list-card-hover-lift: -2px; */
+  /* --mino-document-list-card-hover-shadow: 0 10px 15px -3px rgba(from var(--mino-palette-neutral-900) r g b / 0.1); */
+  /* --mino-document-list-card-min-width-2: 300px; */
+  /* --mino-document-list-card-min-width-3: 260px; */
+  /* --mino-document-list-card-min-width-4: 220px; */
+  /* --mino-document-list-card-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-document-list-container-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-document-list-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-document-list-container-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-document-list-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-document-list-description-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-document-list-description-font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px)); */
+  /* --mino-document-list-description-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-document-list-description-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-document-list-disclaimer-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-document-list-disclaimer-gap: var(--mino-spacing-xs, var(--spacing-xs, 4px)); */
+  /* --mino-document-list-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-document-list-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-document-list-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-document-list-filter-max-height: 480px; */
+  /* --mino-document-list-grid-gap: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-document-list-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-document-list-layout-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-document-list-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-document-list-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-document-list-sidebar-background: var(--mino-color-bg-surface, var(--bg-surface)); */
+  /* --mino-document-list-sidebar-border-color: var(--mino-color-border-default, var(--border-default)); */
+  /* --mino-document-list-sidebar-border-width: 1px; */
+  /* --mino-document-list-sidebar-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-document-list-sidebar-padding: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-document-list-sidebar-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-document-list-sidebar-width: 260px; */
+  /* --mino-document-list-sort-min-width: 180px; */
+  /* --mino-document-list-tag-padding-block: 2px; */
+  /* --mino-document-list-tag-padding-inline: 8px; */
+  /* --mino-document-list-thumbnail-height: 160px; */
+  /* --mino-document-list-title-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-document-list-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: FormBlock
+     ================================================================ */
+  /* --mino-form-block-card-background: var(--mino-color-bg-surface, var(--bg-surface, #ffffff)); */
+  /* --mino-form-block-card-border-color: var(--mino-color-border-default, var(--border-default, #e2e8f0)); */
+  /* --mino-form-block-card-border-width: 1px; */
+  /* --mino-form-block-card-padding: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-form-block-card-radius: var(--mino-radius-xl, var(--radius-xl, 16px)); */
+  /* --mino-form-block-card-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 4px 6px -1px rgba(0, 0, 0, 0.05))); */
+  /* --mino-form-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-form-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-form-block-description-color: var(--mino-color-text-secondary, var(--text-secondary)); */
+  /* --mino-form-block-description-font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px)); */
+  /* --mino-form-block-description-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-form-block-description-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-form-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-form-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-form-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-form-block-fields-gap: var(--mino-spacing-md, var(--spacing-md, 20px)); */
+  /* --mino-form-block-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-form-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-form-block-info-gap: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-form-block-media-radius: var(--mino-radius-xl, var(--radius-xl, 16px)); */
+  /* --mino-form-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-form-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-form-block-title-color: var(--mino-color-text-primary, var(--text-primary)); */
+  /* --mino-form-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: GridBlock
+     ================================================================ */
+  /* --mino-grid-block-container-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-grid-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-grid-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-grid-block-expand-duration: var(--mino-motion-duration-slower, 450ms); */
+  /* --mino-grid-block-expand-easing: var(--mino-motion-easing-decelerate, cubic-bezier(0.22, 1, 0.36, 1)); */
+  /* --mino-grid-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-grid-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-grid-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-grid-block-focus-offset: 3px; */
+  /* --mino-grid-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-grid-block-item-min-height: 48px; */
+  /* --mino-grid-block-link-indicator-blur: 8px; */
+  /* --mino-grid-block-link-indicator-icon-size: 20px; */
+  /* --mino-grid-block-link-indicator-size: 36px; */
+  /* --mino-grid-block-media-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-grid-block-media-shadow: 0 20px 25px -5px rgba(from var(--mino-palette-neutral-900) r g b / 0.1); */
+  /* --mino-grid-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-grid-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-grid-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: HeroBlock
+     ================================================================ */
+  /* --mino-hero-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-hero-container-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-hero-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-hero-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-hero-full-bleed-min-height: 550px; */
+  /* --mino-hero-gap: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-hero-media-indicator-color: #fff; */
+  /* --mino-hero-media-indicator-size: 30px; */
+  /* --mino-hero-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-hero-split-content-basis: 35%; */
+  /* --mino-hero-tag-padding-block: 4px; */
+  /* --mino-hero-tag-padding-inline: 12px; */
+  /* --mino-hero-tag-transition-duration: var(--mino-motion-duration-fast, 150ms); */
+  /* --mino-hero-tile-content-max-width: 650px; */
+  /* --mino-hero-tile-content-padding: var(--mino-spacing-xl, var(--spacing-xl)); */
+  /* --mino-hero-tile-content-radius: var(--mino-radius-md, var(--radius-md)); */
+  /* --mino-hero-tile-min-height: 450px; */
+  /* --mino-hero-tile-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-hero-tile-radius: var(--mino-radius-lg, var(--radius-lg, 16px)); */
+  /* --mino-hero-title-font-size: var(--mino-font-size-4xl, var(--font-size-4xl, 36px)); */
+  /* --mino-hero-title-letter-spacing: -0.03em; */
+
+  /* ================================================================
+     Block: PollBlock
+     ================================================================ */
+  /* --mino-poll-background: var(--mino-color-bg-canvas, var(--bg-canvas, #f8fafc)); */
+  /* --mino-poll-border-color: var(--mino-color-border-muted, var(--border-muted, #e2e8f0)); */
+  /* --mino-poll-border-width: 1px; */
+  /* --mino-poll-container-padding: var(--mino-spacing-xl, var(--spacing-xl)); */
+  /* --mino-poll-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-poll-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-poll-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-poll-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-poll-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-poll-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-poll-max-width: var(--mino-content-measure-xwide, 800px); */
+  /* --mino-poll-option-min-height: 56px; */
+  /* --mino-poll-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-poll-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-poll-progress-duration: 500ms; */
+  /* --mino-poll-progress-easing: cubic-bezier(0.4, 0, 0.2, 1); */
+  /* --mino-poll-progress-fill-background: var(--mino-color-brand-base, var(--brand-base, #3b82f6)); */
+  /* --mino-poll-progress-height: 10px; */
+  /* --mino-poll-progress-radius: var(--mino-radius-full, var(--radius-full, 9999px)); */
+  /* --mino-poll-progress-selected-background: var(--mino-color-brand-hover, var(--brand-hover, #1d4ed8)); */
+  /* --mino-poll-progress-track-background: var(--mino-color-border-subtle, var(--border-subtle, #e2e8f0)); */
+  /* --mino-poll-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-poll-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Block: RichTextBlock
+     ================================================================ */
+  /* --mino-rich-text-block-container-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-rich-text-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-rich-text-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-rich-text-block-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-rich-text-block-max-width-lg: 1024px; */
+  /* --mino-rich-text-block-max-width-md: 800px; */
+  /* --mino-rich-text-block-max-width-sm: 640px; */
+  /* --mino-rich-text-block-padding-block: var(--mino-spacing-2xl, var(--spacing-2xl, 48px)); */
+  /* --mino-rich-text-block-padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+
+  /* ================================================================
+     Block: TabsBlock
+     ================================================================ */
+  /* --mino-tabs-block-badge-background: var(--mino-color-bg-muted, var(--bg-muted, rgba(255, 255, 255, 0.2))); */
+  /* --mino-tabs-block-badge-padding-block: 2px; */
+  /* --mino-tabs-block-badge-padding-inline: 8px; */
+  /* --mino-tabs-block-container-gap: var(--mino-spacing-xl, var(--spacing-xl, 32px)); */
+  /* --mino-tabs-block-container-max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px)); */
+  /* --mino-tabs-block-content-max-width: var(--heading-max-width, var(--mino-content-measure-wide, 760px)); */
+  /* --mino-tabs-block-eyebrow-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-tabs-block-eyebrow-font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700)); */
+  /* --mino-tabs-block-eyebrow-letter-spacing: 0.05em; */
+  /* --mino-tabs-block-heading-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-tabs-block-media-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-tabs-block-media-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 4px 12px rgba(0, 0, 0, 0.05))); */
+  /* --mino-tabs-block-padding-block: var(--mino-spacing-xl, var(--spacing-xl, 48px)); */
+  /* --mino-tabs-block-padding-inline: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-tabs-block-title-gap: var(--mino-spacing-xs, var(--spacing-xs, 8px)); */
+
+  /* ================================================================
+     Card: ArticleCard
+     ================================================================ */
+  /* --mino-article-card-author-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-article-card-author-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+  /* --mino-article-card-author-gap: var(--mino-spacing-sm, var(--spacing-sm, 10px)); */
+  /* --mino-article-card-author-line-height: 1.3; */
+  /* --mino-article-card-body-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-article-card-body-padding: var(--mino-spacing-lg, var(--spacing-lg, 16px)); */
+  /* --mino-article-card-focus-color: var(--mino-color-brand-focus, var(--brand-focus, #3b82f6)); */
+  /* --mino-article-card-focus-offset: 4px; */
+  /* --mino-article-card-focus-radius: var(--mino-radius-md, var(--radius-md, 8px)); */
+  /* --mino-article-card-horizontal-image-min-width: 180px; */
+  /* --mino-article-card-horizontal-image-width: 45%; */
+  /* --mino-article-card-hover-lift: -2px; */
+  /* --mino-article-card-hover-shadow: var(--mino-shadow-md, var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1))); */
+  /* --mino-article-card-image-aspect-ratio: 16 / 9; */
+  /* --mino-article-card-image-background: var(--mino-color-bg-canvas, var(--bg-canvas, #f8fafc)); */
+  /* --mino-article-card-image-hover-scale: 1.02; */
+  /* --mino-article-card-image-transition: var(--transition-medium, 0.25s ease); */
+  /* --mino-article-card-meta-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-article-card-padding: var(--mino-spacing-xs, var(--spacing-xs)); */
+  /* --mino-article-card-title-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-article-card-title-line-height: var(--mino-line-height-heading, var(--line-height-heading, 1.3)); */
+  /* --mino-article-card-transition: var(--transition-fast, 0.15s ease); */
+  /* --mino-article-card-type-badge-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+
+  /* ================================================================
+     Card: FullBleedCard
+     ================================================================ */
+  /* --mino-full-bleed-card-background: var(--mino-color-bg-canvas, var(--bg-canvas, #0f172a)); */
+  /* --mino-full-bleed-card-color: var(--mino-color-text-inverse, var(--text-inverse, #ffffff)); */
+  /* --mino-full-bleed-card-content-duration: var(--mino-motion-duration-slow, 350ms); */
+  /* --mino-full-bleed-card-content-gap: var(--mino-spacing-sm, var(--spacing-sm, 8px)); */
+  /* --mino-full-bleed-card-content-padding: var(--mino-spacing-lg, var(--spacing-lg, 24px)); */
+  /* --mino-full-bleed-card-description-color: var(--mino-color-text-inverse, var(--text-inverse, #ffffff)); */
+  /* --mino-full-bleed-card-description-offset: 12px; */
+  /* --mino-full-bleed-card-description-opacity: 0.92; */
+  /* --mino-full-bleed-card-focus-offset: 3px; */
+  /* --mino-full-bleed-card-image-duration: var(--mino-motion-duration-slower, 450ms); */
+  /* --mino-full-bleed-card-image-hover-scale: 1.025; */
+  /* --mino-full-bleed-card-indicator-background: rgba(from var(--mino-palette-neutral-0) r g b / 0.75); */
+  /* --mino-full-bleed-card-indicator-blur: 8px; */
+  /* --mino-full-bleed-card-indicator-border-color: rgba(from var(--mino-palette-neutral-100) r g b / 0.5); */
+  /* --mino-full-bleed-card-indicator-border-width: 1px; */
+  /* --mino-full-bleed-card-indicator-color: var(--mino-color-brand-base, var(--brand-base)); */
+  /* --mino-full-bleed-card-indicator-hover-background: rgba(from var(--mino-color-brand-base, var(--brand-base)) r g b / 0.75); */
+  /* --mino-full-bleed-card-indicator-hover-border-color: rgba(from var(--mino-color-brand-base, var(--brand-base)) r g b / 0.25); */
+  /* --mino-full-bleed-card-indicator-hover-color: var(--mino-color-text-inverse, var(--text-inverse, #ffffff)); */
+  /* --mino-full-bleed-card-indicator-icon-size: 20px; */
+  /* --mino-full-bleed-card-indicator-offset: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-full-bleed-card-indicator-size: 36px; */
+  /* --mino-full-bleed-card-indicator-transform-duration: 250ms; */
+  /* --mino-full-bleed-card-min-height: 440px; */
+  /* --mino-full-bleed-card-mobile-min-height: 360px; */
+  /* --mino-full-bleed-card-opacity-duration: 250ms; */
+  /* --mino-full-bleed-card-overlay-background: linear-gradient( to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.42) 35%, rgba(0, 0, 0, 0.08) 68%, rgba(0, 0, 0, 0) 100% ); */
+  /* --mino-full-bleed-card-overlay-duration: var(--mino-motion-duration-slow, 350ms); */
+  /* --mino-full-bleed-card-overlay-hover-background: linear-gradient( to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.56) 42%, rgba(0, 0, 0, 0.18) 72%, rgba(0, 0, 0, 0) 100% ); */
+  /* --mino-full-bleed-card-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-full-bleed-card-title-color: var(--mino-color-text-inverse, var(--text-inverse, #ffffff)); */
+
+  /* ================================================================
+     Card: ResourceCard
+     ================================================================ */
+  /* --mino-resource-card-background: var(--mino-color-bg-surface, var(--bg-surface, #ffffff)); */
+  /* --mino-resource-card-badge-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+  /* --mino-resource-card-body-gap: var(--mino-spacing-sm, var(--spacing-sm, 12px)); */
+  /* --mino-resource-card-body-padding-inline: var(--mino-spacing-xs, var(--spacing-xs)); */
+  /* --mino-resource-card-border-color: var(--mino-color-border-default, var(--border-default, #e2e8f0)); */
+  /* --mino-resource-card-border-width: 1px; */
+  /* --mino-resource-card-footer-padding-top: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-resource-card-hover-border-color: var(--mino-color-brand-border, var(--brand-border, #cbd5e1)); */
+  /* --mino-resource-card-hover-shadow: var(--mino-shadow-sm, var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05))); */
+  /* --mino-resource-card-image-aspect-ratio: 16 / 9; */
+  /* --mino-resource-card-image-background: var(--mino-color-bg-canvas, var(--bg-canvas, #f8fafc)); */
+  /* --mino-resource-card-image-margin-bottom: var(--mino-spacing-lg, var(--spacing-lg)); */
+  /* --mino-resource-card-image-radius: var(--mino-radius-md, var(--radius-md)); */
+  /* --mino-resource-card-radius: var(--mino-radius-lg, var(--radius-lg, 8px)); */
+  /* --mino-resource-card-summary-line-height: var(--mino-line-height-body, var(--line-height-body, 1.5)); */
+  /* --mino-resource-card-tag-background: var(--mino-color-bg-canvas, var(--bg-canvas, #f1f5f9)); */
+  /* --mino-resource-card-tag-color: var(--mino-color-text-secondary, var(--text-secondary, #475569)); */
+  /* --mino-resource-card-tag-font-family: var(--mino-font-family-sans, var(--font-family-sans, system-ui, sans-serif)); */
+  /* --mino-resource-card-tag-font-size: var(--mino-font-size-xs, var(--font-size-xs, 12px)); */
+  /* --mino-resource-card-tag-gap: var(--mino-spacing-xs, var(--spacing-xs, 6px)); */
+  /* --mino-resource-card-tag-line-height: 1.4; */
+  /* --mino-resource-card-tag-margin-top: var(--mino-spacing-xs, var(--spacing-xs, 4px)); */
+  /* --mino-resource-card-tag-padding-block: 2px; */
+  /* --mino-resource-card-tag-padding-inline: 8px; */
+  /* --mino-resource-card-tag-radius: var(--mino-radius-sm, var(--radius-sm, 4px)); */
+  /* --mino-resource-card-title-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-resource-card-transition: var(--transition-fast, 0.15s ease); */
+
+  /* ================================================================
+     Card: TestimonialCard
+     ================================================================ */
+  /* --mino-testimonial-card-author-border-color: var(--mino-color-border-subtle, var(--border-subtle, #f1f5f9)); */
+  /* --mino-testimonial-card-author-border-width: 1px; */
+  /* --mino-testimonial-card-author-color: var(--mino-color-text-primary, var(--text-primary, #0f172a)); */
+  /* --mino-testimonial-card-author-font-weight: var(--mino-font-weight-semibold, var(--font-weight-semibold, 600)); */
+  /* --mino-testimonial-card-author-gap: var(--mino-spacing-md, var(--spacing-md, 12px)); */
+  /* --mino-testimonial-card-author-line-height: 1.3; */
+  /* --mino-testimonial-card-author-padding-top: var(--mino-spacing-md, var(--spacing-md, 8px)); */
+  /* --mino-testimonial-card-background: var(--mino-color-bg-surface, var(--bg-surface, #ffffff)); */
+  /* --mino-testimonial-card-border-color: var(--mino-color-border-default, var(--border-default, #e2e8f0)); */
+  /* --mino-testimonial-card-border-width: 1px; */
+  /* --mino-testimonial-card-gap: var(--mino-spacing-md, var(--spacing-md, 16px)); */
+  /* --mino-testimonial-card-logo-grayscale: 100%; */
+  /* --mino-testimonial-card-logo-height: 28px; */
+  /* --mino-testimonial-card-logo-opacity: 0.75; */
+  /* --mino-testimonial-card-logo-transition: var(--transition-fast, 0.15s ease); */
+  /* --mino-testimonial-card-padding: var(--mino-spacing-xl, var(--spacing-xl, 24px)); */
+  /* --mino-testimonial-card-quote-color: var(--mino-color-text-primary, var(--text-primary, #1e293b)); */
+  /* --mino-testimonial-card-quote-line-height: var(--mino-line-height-body, var(--line-height-body, 1.6)); */
+  /* --mino-testimonial-card-radius: var(--mino-radius-lg, var(--radius-lg, 12px)); */
+  /* --mino-testimonial-card-rating-gap: 2px; */
+  /* --mino-testimonial-card-star-empty-color: var(--mino-color-border-muted, var(--border-muted, #cbd5e1)); */
+  /* --mino-testimonial-card-star-filled-color: var(--mino-color-feedback-warning, var(--feedback-warning, #f59e0b)); */
+  /* --mino-testimonial-card-star-size: var(--mino-font-size-md, var(--font-size-md, 16px)); */
+}
+
+/*
+ * Scoped overrides are supported too. Example:
+ *
+ * .marketingPage {
+ *   --mino-hero-content-max-width: 58rem;
+ *   --mino-full-bleed-card-min-height: 32rem;
+ * }
+ *
+ * .compactSearch {
+ *   --mino-document-list-sidebar-width: 14rem;
+ *   --mino-document-list-card-min-width-3: 15rem;
+ * }
+ */

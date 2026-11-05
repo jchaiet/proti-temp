@@ -1,0 +1,196 @@
+.authorPage {
+  width: 100%;
+  max-width: var(--mino-layout-max-width, var(--layout-max-width, 1300px));
+  margin: 0 auto;
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mino-spacing-2xl, var(--spacing-2xl, 56px));
+  padding: var(--mino-spacing-xl, var(--spacing-xl, 48px))
+    var(--mino-spacing-lg, var(--spacing-lg, 24px));
+}
+
+.profileRail {
+  flex: 0 0 min(300px, 30%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mino-spacing-xl, var(--spacing-xl, 16px));
+  min-width: 0;
+}
+
+.profileContent {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mino-spacing-xl, var(--spacing-md, 32px));
+}
+
+.portraitFrame {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--mino-radius-lg, var(--radius-lg, 16px));
+  background: var(--mino-color-bg-surface, var(--bg-surface, #fff));
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--mino-spacing-sm, var(--spacing-sm, 12px));
+}
+
+.authorName {
+  margin: 0;
+}
+
+.jobTitle {
+  margin: 0;
+  color: var(--mino-color-text-secondary, var(--text-secondary));
+  font-size: var(--mino-font-size-lg, var(--font-size-lg, 18px));
+  line-height: var(--mino-line-height-body, var(--line-height-body, 1.6));
+}
+
+.socialLinks {
+  width: 100%;
+  margin-top: var(--mino-spacing-xs, var(--spacing-xs, 4px));
+  flex-wrap: wrap;
+}
+
+.bio {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.bio > div {
+  padding: 0;
+}
+
+.expertise {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mino-spacing-lg, var(--spacing-lg, 24px));
+  padding: var(--mino-spacing-lg, var(--spacing-lg, 24px));
+  border: 1px solid var(--mino-color-border-muted, var(--border-muted, #e2e8f0));
+  border-radius: var(--mino-radius-lg, var(--radius-lg, 16px));
+  background: var(--mino-color-bg-surface, var(--bg-surface, #fff));
+}
+
+.expertiseSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mino-spacing-xs, var(--spacing-xs, 8px));
+}
+
+.expertiseSection p {
+  margin: 0;
+}
+
+.expertiseLabel {
+  color: var(--mino-color-text-primary, var(--text-primary));
+  font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px));
+  font-weight: var(--mino-font-weight-bold, var(--font-weight-bold, 700));
+  line-height: var(--mino-line-height-heading, 1.3);
+}
+
+.expertiseList,
+.credentialList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--mino-font-size-md, var(--font-size-md, 16px));
+}
+
+.expertiseList li + li,
+.credentialList li + li {
+  margin-top: var(--mino-spacing-xs, var(--spacing-xs, 8px));
+}
+
+.credentialMeta {
+  display: block;
+  margin-top: var(--mino-spacing-2xs, 4px);
+  color: var(--mino-color-text-secondary, var(--text-secondary));
+  font-size: var(--mino-font-size-sm, var(--font-size-sm, 14px));
+  line-height: var(--mino-line-height-body, var(--line-height-body, 1.5));
+}
+
+.affiliation {
+  color: var(--mino-color-text-primary, var(--text-primary));
+}
+
+.dividerWrap,
+.articles {
+  width: 100%;
+}
+
+.dividerWrap {
+  padding-inline: var(--mino-spacing-lg, var(--spacing-lg, 24px));
+}
+
+.divider {
+  --divider-color: var(--mino-color-border-muted, var(--border-muted, #e2e8f0));
+
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .profile {
+    flex-direction: column;
+    gap: var(--mino-spacing-xl, var(--spacing-xl, 32px));
+  }
+
+  .profileRail,
+  .profileContent {
+    flex: none;
+    width: 100%;
+  }
+
+  .profileRail {
+    gap: var(--mino-spacing-lg, var(--spacing-lg, 24px));
+  }
+
+  .portraitFrame {
+    width: min(72vw, 240px);
+  }
+
+  .expertise {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile {
+    padding: var(--mino-spacing-lg, var(--spacing-lg, 24px));
+  }
+
+  .expertise {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .expertise {
+    padding: var(--mino-spacing-md, var(--spacing-md, 16px));
+  }
+
+  .socialLinks {
+    max-width: 100%;
+  }
+}

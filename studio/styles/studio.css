@@ -1,0 +1,11 @@
+/*
+ * Sanity Studio nested object dialog spacing.
+ *
+ * Allow the inner content wrapper to grow naturally
+ * and preserve additional space below the final field.
+ */
+
+[data-ui='DialogContent'] > [data-ui='Box'] {
+  height: auto !important;
+  padding-bottom: 24px !important;
+}

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "projectName": "Example Site",
+  "packageName": "example-site",
+  "sanity": {
+    "projectId": "your-sanity-project-id",
+    "dataset": "production",
+    "studioUrl": "http://localhost:3333",
+    "previewUrl": "http://localhost:3000"
+  },
+  "site": {
+    "name": "Example Site",
+    "key": "example-site",
+    "domains": ["localhost"],
+    "defaultLocale": "en-us",
+    "locales": [
+      {
+        "code": "en-us",
+        "label": "English (US)"
+      },
+      {
+        "code": "es-us",
+        "label": "Spanish (US)"
+      }
+    ]
+  }
+}

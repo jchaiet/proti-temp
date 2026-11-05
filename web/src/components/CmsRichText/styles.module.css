@@ -1,0 +1,44 @@
+.textStyle {
+  color: inherit;
+  font-size: inherit;
+}
+
+.textStyle[data-color="brand"] {
+  color: var(--mino-color-brand-base, var(--brand-base));
+}
+
+.textStyle[data-color="secondary"] {
+  color: var(--mino-color-text-secondary, var(--text-secondary));
+}
+
+.textStyle[data-color="inverse"] {
+  color: var(--mino-color-text-inverse, var(--text-inverse));
+}
+
+.textStyle[data-size="sm"] {
+  font-size: var(--mino-font-size-sm, var(--font-size-sm));
+}
+
+.textStyle[data-size="md"] {
+  font-size: var(--mino-font-size-md, var(--font-size-md));
+}
+
+.textStyle[data-size="lg"] {
+  font-size: var(--mino-font-size-lg, var(--font-size-lg));
+}
+
+.textStyle[data-size="xl"] {
+  font-size: var(--mino-font-size-xl, var(--font-size-xl));
+}
+
+.textStyle[data-size="2xl"] {
+  font-size: var(--mino-font-size-2xl, var(--font-size-2xl));
+}
+
+.textStyle[data-size="3xl"] {
+  font-size: var(--mino-font-size-3xl, var(--font-size-3xl));
+}
+
+.textStyle[data-size="4xl"] {
+  font-size: var(--mino-font-size-4xl, var(--font-size-4xl));
+}

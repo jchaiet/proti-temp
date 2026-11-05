@@ -1,0 +1,53 @@
+packages:
+  - web
+  - studio
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: false
+
+overrides:
+  # Sanity CLI dependencies
+  "undici@7": "7.30.1"
+  "js-yaml@3": "3.15.2"
+  "smol-toml@1": "1.9.0"
+
+  # Sanity and ESLint dependencies
+  "js-yaml@4": "4.3.2"
+  "brace-expansion@1": "1.1.21"
+  "brace-expansion@5": "5.0.12"
+
+  # Vite and build-tool dependencies
+  "vite@6": "6.4.5"
+  "source-map-js@1": "1.2.2"
+
+  "zod@4": "4.6.6"
+  "typeid-js>uuid": "11.1.1"
+  "@oclif/core>minimatch": "11.0.1"
+
+minimumReleaseAgeExclude:
+  - "@portabletext/editor@8.1.1"
+  - "@portabletext/plugin-character-pair-decorator@9.0.5"
+  - "@portabletext/plugin-dnd@2.0.5"
+  - "@portabletext/plugin-input-rule@7.0.5"
+  - "@portabletext/plugin-list-index@2.0.5"
+  - "@portabletext/plugin-markdown-shortcuts@9.0.5"
+  - "@portabletext/plugin-one-line@8.0.5"
+  - "@portabletext/plugin-paste-link@5.0.5"
+  - "@portabletext/plugin-table@2.0.5"
+  - "@portabletext/plugin-typography@9.0.5"
+  - "@sanity/access-ui@6.12.0"
+  - "@sanity/cli-build@6.2.0"
+  - "@sanity/cli-core@3.6.0"
+  - "@sanity/cli@8.7.0"
+  - "@sanity/diff@6.12.0"
+  - "@sanity/mutator@6.12.0"
+  - "@sanity/schema@6.12.0"
+  - "@sanity/types@6.12.0"
+  - "@sanity/util@6.12.0"
+  - "@sanity/validation@6.12.0"
+  - "@sanity/vision@6.12.0"
+  - "@sanity/workbench-cli@2.3.0"
+  - i18next@26.4.1
+  - react-i18next@17.0.13
+  - sanity@6.12.0

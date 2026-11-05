@@ -1,0 +1,221 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PNPM_VERSION: 10.34.1
+  NODE_VERSION: 24.19.0
+
+jobs:
+  studio:
+    name: Studio
+    runs-on: ubuntu-latest
+
+    env:
+      SANITY_STUDIO_PROJECT_ID: ${{ secrets.NEXT_SANITY_PROJECT_ID }}
+      SANITY_STUDIO_DATASET: ${{ vars.NEXT_SANITY_DATASET || 'production' }}
+      SANITY_STUDIO_TITLE: Proti Studio
+      SANITY_STUDIO_PREVIEW_URL: http://localhost:3000
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test Proti setup
+        run: pnpm test:proti
+
+      - name: Test Studio
+        working-directory: studio
+        run: pnpm test
+
+      - name: Build Studio
+        working-directory: studio
+        run: pnpm build
+
+  web:
+    name: Web
+    runs-on: ubuntu-latest
+
+    env:
+      NEXT_SANITY_PROJECT_ID: ${{ secrets.NEXT_SANITY_PROJECT_ID }}
+      NEXT_SANITY_DATASET: ${{ vars.NEXT_SANITY_DATASET || 'production' }}
+      NEXT_SANITY_STUDIO_URL: ${{ vars.NEXT_SANITY_STUDIO_URL || 'http://localhost:3333' }}
+      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+      SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+      SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Web dependencies
+        working-directory: ${{ github.workspace }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Web tests
+        working-directory: web
+        run: pnpm test:run
+
+      - name: Type-check Web
+        working-directory: web
+        run: pnpm exec next typegen && pnpm exec tsc --noEmit
+
+      - name: Lint Web
+        working-directory: web
+        run: pnpm lint
+
+      - name: Build Web
+        working-directory: web
+        run: pnpm build
+
+  playwright-smoke:
+    name: Playwright smoke
+    runs-on: ubuntu-latest
+    needs: web
+
+    env:
+      NEXT_SANITY_PROJECT_ID: ${{ secrets.NEXT_SANITY_PROJECT_ID }}
+      NEXT_SANITY_DATASET: ${{ vars.NEXT_SANITY_DATASET || 'production' }}
+      NEXT_SANITY_STUDIO_URL: ${{ vars.NEXT_SANITY_STUDIO_URL || 'http://localhost:3333' }}
+      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+      SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+      SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
+      PLAYWRIGHT_BASE_URL: http://localhost:3000
+      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm start
+      E2E_HOME_PATH: /
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Web dependencies
+        working-directory: ${{ github.workspace }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        working-directory: web
+        run: pnpm exec playwright install --with-deps chromium firefox
+
+      - name: Build Web
+        working-directory: web
+        run: pnpm build
+
+      - name: Run Playwright smoke tests
+        working-directory: web
+        run: pnpm test:e2e:smoke
+
+  playwright-visual:
+    name: Playwright visual
+    runs-on: ubuntu-latest
+    needs: playwright-smoke
+
+    env:
+      NEXT_SANITY_PROJECT_ID: ${{ secrets.NEXT_SANITY_PROJECT_ID }}
+      NEXT_SANITY_DATASET: ${{ vars.NEXT_SANITY_DATASET || 'production' }}
+      NEXT_SANITY_STUDIO_URL: ${{ vars.NEXT_SANITY_STUDIO_URL || 'http://localhost:3333' }}
+      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+      SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+      SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
+      PLAYWRIGHT_BASE_URL: http://localhost:3000
+      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm start
+      E2E_HOME_PATH: /
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install Web dependencies
+        working-directory: ${{ github.workspace }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        working-directory: web
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build Web
+        working-directory: web
+        run: pnpm build
+
+      - name: Run visual regression tests
+        working-directory: web
+        run: >
+          pnpm test:e2e:visual
+          --project=chromium-desktop
+          --project=chromium-mobile
+
+      - name: Upload Playwright visual artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-visual-artifacts-${{ github.run_id }}
+          path: |
+            web/playwright-report/
+            web/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
