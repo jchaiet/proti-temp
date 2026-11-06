@@ -7,8 +7,13 @@ loadE2EEnv();
 const baseURL =
   process.env.PLAYWRIGHT_BASE_URL?.trim() || "http://127.0.0.1:3000";
 
+// Keep the production server on the same port Playwright is testing.
+// A dev server can silently move to 3001 when 3000 is occupied.
+const serverPort = Number(new URL(baseURL).port || 3000);
+
 const webServerCommand =
-  process.env.PLAYWRIGHT_WEB_SERVER_COMMAND?.trim() || "pnpm dev";
+  process.env.PLAYWRIGHT_WEB_SERVER_COMMAND?.trim() ||
+  `pnpm exec next start -p ${serverPort}`;
 
 const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === "1";
 
@@ -118,7 +123,13 @@ export default defineConfig({
     : {
         command: webServerCommand,
         url: baseURL,
-        reuseExistingServer: !process.env.CI,
+        // Never reuse a stale dev server (or another app) on this port.
+        reuseExistingServer: false,
+        // Make `pnpm start` overrides use the same port as baseURL.
+        env: { PORT: String(serverPort) },
+        // Show startup output when Next.js fails to become ready.
+        stdout: "pipe",
+        stderr: "pipe",
         timeout: 120_000,
       },
 });
