@@ -1,12 +1,17 @@
 import {defineCliConfig} from 'sanity/cli'
 
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID
+const dataset = process.env.SANITY_STUDIO_DATASET
+const appId = process.env.SANITY_STUDIO_APP_ID
+
 export default defineCliConfig({
   api: {
-    projectId: '3k4hstk3',
-    dataset: 'production',
+    projectId,
+    dataset,
   },
+
   deployment: {
-    appId: 'wqr59yf1wbq7p3r2861n8z6t',
+    ...(appId ? {appId} : {}),
     autoUpdates: true,
   },
 })
