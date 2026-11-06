@@ -222,7 +222,7 @@ async function setupProjectGit() {
 
   if (initialized === "true") {
     console.log("✓ Existing project Git repository preserved");
-    return;
+    return false;
   }
 
   // Never modify a parent repository when invoked from a nested directory.
@@ -231,7 +231,7 @@ async function setupProjectGit() {
     console.warn(
       "! Git setup skipped: this folder is inside another Git repository.",
     );
-    return;
+    return false;
   }
 
   let gitEntry;
@@ -247,16 +247,17 @@ async function setupProjectGit() {
       git(["init", "-b", "main"]);
       git(["config", "--local", "proti.initialized", "true"]);
       console.log("✓ Initialized a fresh Git repository (no remotes)");
+      return true;
     } catch (error) {
       console.warn(`! Could not initialize Git: ${error.message}`);
     }
-    return;
+    return false;
   }
 
   // A linked worktree/submodule can have a .git file or symlink. Do not detach it.
   if (!gitEntry.isDirectory() || gitEntry.isSymbolicLink()) {
     console.warn("! Git setup skipped: .git is not a regular directory.");
-    return;
+    return false;
   }
 
   const origin = tryGit(["remote", "get-url", "origin"]);
@@ -266,7 +267,7 @@ async function setupProjectGit() {
       git(["config", "--local", "proti.initialized", "true"]);
     }
     console.log("✓ Existing Git repository preserved (not a proti-demo clone)");
-    return;
+    return false;
   }
 
   // Detach only a first-run clone of the known Proti demo starter. Move the
@@ -284,6 +285,7 @@ async function setupProjectGit() {
       "✓ Initialized independent Git repository (no inherited history or remotes)",
     );
     console.log(`  Previous Git metadata backed up at: ${backup}`);
+    return true;
   } catch (error) {
     await fs.rm(gitPath, { recursive: true, force: true });
     await fs.rename(backup, gitPath);
@@ -291,6 +293,20 @@ async function setupProjectGit() {
       `Git initialization failed; original Git metadata restored. ${error.message}`,
     );
   }
+}
+
+// Visual snapshots belong to the site that created them. Never carry the
+// proti-demo screenshots into a brand-new generated project's CI baseline.
+// This runs only when Git was freshly initialized/reset, not on repeat init.
+async function clearInheritedVisualBaselines() {
+  const snapshots = path.join(ROOT, "web", "e2e", "__screenshots__");
+  if (!(await fileExists(snapshots))) return;
+
+  await fs.rm(snapshots, { recursive: true, force: true });
+  console.log("✓ Removed inherited demo visual baselines");
+  console.log(
+    "  Generate your site's baselines after seeding: pnpm proti:visual:init",
+  );
 }
 
 const existingConfig = (await readJson(CONFIG_PATH, {})) ?? {};
@@ -490,6 +506,7 @@ try {
       SANITY_STUDIO_DATASET: dataset,
       SANITY_STUDIO_TITLE: projectName,
       SANITY_STUDIO_PREVIEW_URL: previewUrl,
+      SANITY_STUDIO_APP_ID: existingStudioEnv.SANITY_STUDIO_APP_ID || "",
     },
     "Proti Studio local environment",
   );
@@ -504,7 +521,8 @@ try {
     `${packageName}-studio`,
   );
 
-  await setupProjectGit();
+  const freshRepository = await setupProjectGit();
+  if (freshRepository) await clearInheritedVisualBaselines();
 
   console.log("\n✓ Wrote proti.config.json");
   console.log("✓ Wrote web/.env.local");
@@ -517,8 +535,12 @@ try {
     "     Optional starter content: pnpm proti:seed --starter-content",
   );
   console.log("  3. Run: pnpm proti:check");
-  console.log("  4. Run: pnpm dev:studio");
-  console.log("  5. Run: pnpm dev:web\n");
+  console.log(
+    "  4. Run: pnpm proti:visual:init (after seeding; requires Playwright Chromium)",
+  );
+  console.log("  5. Review and commit the new visual screenshots before CI");
+  console.log("  6. Run: pnpm dev:studio");
+  console.log("  7. Run: pnpm dev:web\n");
 } finally {
   rl?.close();
 }
