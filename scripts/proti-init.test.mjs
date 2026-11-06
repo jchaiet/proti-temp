@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import test from "node:test";
 
@@ -329,6 +330,100 @@ test("initializer rejects malformed locale shapes", async () => {
     assert.notEqual(result.code, 0);
 
     assert.match(result.stderr, /Use language-region format, e\.g\. en-us/);
+  } finally {
+    await removeTempRepo(repo);
+  }
+});
+
+test("first initialization clears inherited visual baselines and rerun preserves new ones", async () => {
+  const repo = await createTempRepo();
+  const snapshots = path.join(
+    repo,
+    "web",
+    "e2e",
+    "__screenshots__",
+    "chromium-desktop",
+  );
+  const screenshot = path.join(snapshots, "home.png");
+
+  try {
+    await copyScript(INIT_SCRIPT, repo, "proti-init.mjs");
+    await fs.mkdir(snapshots, { recursive: true });
+    await fs.writeFile(screenshot, "inherited demo screenshot");
+
+    const first = await runNode({
+      cwd: repo,
+      script: "scripts/proti-init.mjs",
+      input: scriptedInput(["", "", "abc123", ...new Array(9).fill("")]),
+    });
+
+    assert.equal(first.code, 0, first.stderr);
+    assert.match(first.stdout, /Removed inherited demo visual baselines/);
+    assert.match(first.stdout, /pnpm proti:visual:init/);
+    await assert.rejects(fs.access(screenshot), { code: "ENOENT" });
+
+    await fs.mkdir(snapshots, { recursive: true });
+    await fs.writeFile(screenshot, "new project screenshot");
+
+    const second = await runNode({
+      cwd: repo,
+      script: "scripts/proti-init.mjs",
+      input: scriptedInput(new Array(12).fill("")),
+    });
+
+    assert.equal(second.code, 0, second.stderr);
+    assert.doesNotMatch(
+      second.stdout,
+      /Removed inherited demo visual baselines/,
+    );
+    assert.equal(
+      await fs.readFile(screenshot, "utf8"),
+      "new project screenshot",
+    );
+  } finally {
+    await removeTempRepo(repo);
+  }
+});
+
+test("initializing a cloned proti-demo repository clears its origin and demo screenshots", async () => {
+  const repo = await createTempRepo();
+  const screenshot = path.join(
+    repo,
+    "web",
+    "e2e",
+    "__screenshots__",
+    "chromium-mobile",
+    "home.png",
+  );
+
+  try {
+    await copyScript(INIT_SCRIPT, repo, "proti-init.mjs");
+    execFileSync("git", ["init", "-q"], { cwd: repo });
+    execFileSync(
+      "git",
+      ["remote", "add", "origin", "git@github.com:example/proti-demo.git"],
+      { cwd: repo },
+    );
+    await fs.mkdir(path.dirname(screenshot), { recursive: true });
+    await fs.writeFile(screenshot, "demo screenshot");
+
+    const result = await runNode({
+      cwd: repo,
+      script: "scripts/proti-init.mjs",
+      input: scriptedInput(["", "", "abc123", ...new Array(9).fill("")]),
+    });
+
+    assert.equal(result.code, 0, result.stderr);
+    assert.match(result.stdout, /Initialized independent Git repository/);
+    assert.match(result.stdout, /Removed inherited demo visual baselines/);
+    assert.equal(
+      execFileSync("git", ["remote", "-v"], {
+        cwd: repo,
+        encoding: "utf8",
+      }).trim(),
+      "",
+    );
+    await assert.rejects(fs.access(screenshot), { code: "ENOENT" });
   } finally {
     await removeTempRepo(repo);
   }
