@@ -19,6 +19,11 @@ const webServerCommand =
 
 const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === "1";
 
+// Use an application-level readiness endpoint that does not depend on
+// Sanity content or which Site owns the incoming hostname.
+// The browser tests still use baseURL to validate the actual pages.
+const readinessURL = new URL("/api/health", baseURL).toString();
+
 export default defineConfig({
   testDir: "./e2e",
 
@@ -124,7 +129,8 @@ export default defineConfig({
     ? undefined
     : {
         command: webServerCommand,
-        url: baseURL,
+        url: readinessURL,
+        // Next.js can be ready even when the CMS-backed homepage is a 404.
         // Never reuse a stale dev server (or another app) on this port.
         reuseExistingServer: false,
         // Make `pnpm start` overrides use the same port as baseURL.
