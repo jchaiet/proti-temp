@@ -1,5 +1,5 @@
 {
-  "name": "proti-temp-site",
+  "name": "proti",
   "private": true,
   "version": "0.3.0",
   "scripts": {
@@ -10,7 +10,7 @@
     "proti:init": "node scripts/proti-init.mjs",
     "proti:visual:init": "node scripts/proti-visual-init.mjs",
     "proti:seed": "node scripts/proti-seed.mjs",
-    "test:proti": "node --test scripts/proti-init.test.mjs scripts/proti-seed.test.mjs scripts/proti-check.test.mjs",
+    "test:proti": "node --test scripts/proti-init.test.mjs scripts/proti-seed.test.mjs scripts/proti-check.test.mjs scripts/proti-visual-init.test.mjs",
     "proti:check": "node scripts/proti-check.mjs"
   }
 }

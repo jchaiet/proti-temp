@@ -298,12 +298,33 @@ async function setupProjectGit() {
 // Visual snapshots belong to the site that created them. Never carry the
 // proti-demo screenshots into a brand-new generated project's CI baseline.
 // This runs only when Git was freshly initialized/reset, not on repeat init.
+// Remove PNG baselines without deleting directory structure or unrelated files.
 async function clearInheritedVisualBaselines() {
   const snapshots = path.join(ROOT, "web", "e2e", "__screenshots__");
   if (!(await fileExists(snapshots))) return;
 
-  await fs.rm(snapshots, { recursive: true, force: true });
-  console.log("✓ Removed inherited demo visual baselines");
+  async function clearPngs(directory) {
+    let removed = 0;
+    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+      const entryPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        removed += await clearPngs(entryPath);
+      } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".png")) {
+        await fs.rm(entryPath);
+        removed++;
+      }
+    }
+    return removed;
+  }
+
+  const removed = await clearPngs(snapshots);
+  if (removed > 0) {
+    console.log(
+      `✓ Removed inherited demo visual baselines (${removed} PNG file${removed === 1 ? "" : "s"})`,
+    );
+  } else {
+    console.log("✓ No inherited demo visual baselines to remove");
+  }
   console.log(
     "  Generate your site's baselines after seeding: pnpm proti:visual:init",
   );

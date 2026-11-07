@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -422,6 +423,116 @@ async function checkSanitySite({ config, webEnv }) {
   }
 }
 
+function runGit(args) {
+  return execFileSync("git", args, {
+    cwd: ROOT,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+    timeout: 10_000,
+  }).trim();
+}
+
+async function checkGitRepository() {
+  let gitRoot;
+
+  try {
+    gitRoot = runGit(["rev-parse", "--show-toplevel"]);
+  } catch (error) {
+    if (error?.code === "ENOENT") {
+      fail(
+        "Git repository",
+        "Git is not installed or is not available on PATH.",
+      );
+    } else {
+      fail(
+        "Git repository",
+        'No Git repository found. Run "pnpm proti:init" in your new project.',
+      );
+    }
+
+    return;
+  }
+
+  // A directory within another project is not an independent Git repository.
+  const [projectRoot, repositoryRoot] = await Promise.all([
+    fs.realpath(ROOT),
+    fs.realpath(gitRoot),
+  ]);
+
+  if (repositoryRoot !== projectRoot) {
+    fail(
+      "Git repository",
+      `Repository root is "${gitRoot}", not the current project. Initialize Git inside this project.`,
+    );
+
+    return;
+  }
+
+  pass("Git repository", "Initialized in this project (commits optional).");
+
+  let remotes;
+
+  try {
+    remotes = runGit(["remote", "-v"]);
+  } catch {
+    fail("Git independence", "Unable to inspect Git remotes.");
+    return;
+  }
+
+  // Examine both fetch and push URLs, and every remote name (not just origin).
+  const inherited = remotes
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => line.match(/^(\S+)\s+(\S+)\s+\((?:fetch|push)\)$/))
+    .filter(Boolean)
+    .filter((match) => /(?:^|[/:])proti-demo(?:\.git)?\/?$/i.test(match[2]));
+
+  if (inherited.length > 0) {
+    const names = [...new Set(inherited.map((match) => match[1]))];
+
+    fail(
+      "Git independence",
+      `Inherited proti-demo remote detected (${names.join(", ")}). Run "pnpm proti:init" for a fresh project, or remove the inherited remote with "git remote remove <name>".`,
+    );
+
+    return;
+  }
+
+  pass(
+    "Git independence",
+    remotes
+      ? "No inherited proti-demo remote; custom remotes are allowed."
+      : "No remote configured (ready for your own repository).",
+  );
+}
+
+async function checkVisualBaselines() {
+  const projects = ["chromium-desktop", "chromium-mobile"];
+  const missing = [];
+
+  for (const project of projects) {
+    const relative = path.join(
+      "web",
+      "e2e",
+      "__screenshots__",
+      project,
+      "home.png",
+    );
+    if (!(await fileExists(path.join(ROOT, relative)))) {
+      missing.push(relative);
+    }
+  }
+
+  if (missing.length > 0) {
+    warn(
+      "Visual baselines",
+      `Missing ${missing.join(", ")}. After seeding, run "pnpm proti:visual:init" and commit the screenshots.`,
+    );
+  } else {
+    pass("Visual baselines", "Desktop and mobile home screenshots exist.");
+  }
+}
+
 function printResults() {
   console.log("\nProti setup check\n");
 
@@ -460,6 +571,8 @@ function printResults() {
 
   console.log("Proti is ready.");
 }
+
+await checkGitRepository();
 
 const configPath = path.join(ROOT, "proti.config.json");
 
@@ -600,6 +713,8 @@ if (!(await fileExists(configPath))) {
         webEnv,
       });
     }
+
+    await checkVisualBaselines();
 
     printResults();
   }

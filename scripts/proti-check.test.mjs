@@ -3,16 +3,36 @@ import fs from "node:fs/promises";
 import http from "node:http";
 import os from "node:os";
 import path from "node:path";
-import { spawn } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import test from "node:test";
 
 const CHECK_SCRIPT = new URL("./proti-check.mjs", import.meta.url);
 
+function git(repo, ...args) {
+  return execFileSync("git", args, {
+    cwd: repo,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  }).trim();
+}
+
 async function createRepo({
   includeTokens = true,
   webProjectId = "abc123",
+  gitMode = "fresh",
+  remoteUrl,
+  withCommit = false,
+  visualBaselines = "both",
 } = {}) {
-  const repo = await fs.mkdtemp(path.join(os.tmpdir(), "proti-check-test-"));
+  const tempRoot = await fs.mkdtemp(
+    path.join(os.tmpdir(), "proti-check-test-"),
+  );
+  const repo =
+    gitMode === "parent" ? path.join(tempRoot, "generated-site") : tempRoot;
+
+  if (gitMode === "parent") {
+    git(tempRoot, "init", "--quiet", "--initial-branch=main");
+  }
 
   await Promise.all([
     fs.mkdir(path.join(repo, "scripts"), {
@@ -123,9 +143,59 @@ async function createRepo({
     ].join("\n"),
   );
 
+  // Healthy generated projects have their own desktop and mobile baselines.
+  // Missing baselines should warn rather than block early project setup.
+  if (visualBaselines !== "none") {
+    const projectNames =
+      visualBaselines === "desktop-only"
+        ? ["chromium-desktop"]
+        : ["chromium-desktop", "chromium-mobile"];
+    for (const project of projectNames) {
+      const directory = path.join(
+        repo,
+        "web",
+        "e2e",
+        "__screenshots__",
+        project,
+      );
+      await fs.mkdir(directory, { recursive: true });
+      await fs.writeFile(path.join(directory, "home.png"), "fixture baseline");
+    }
+  }
+
+  // A generated Proti project starts with its own Git repository and no
+  // inherited remote. Tests may deliberately select other Git states.
+  if (gitMode === "fresh") {
+    git(repo, "init", "--quiet", "--initial-branch=main");
+
+    if (remoteUrl) {
+      git(repo, "remote", "add", "origin", remoteUrl);
+    }
+
+    if (withCommit) {
+      await fs.writeFile(
+        path.join(repo, "fixture.txt"),
+        "First project commit\n",
+      );
+      git(repo, "add", "fixture.txt");
+      git(
+        repo,
+        "-c",
+        "user.name=Proti Test",
+        "-c",
+        "user.email=proti-test@example.invalid",
+        "commit",
+        "--quiet",
+        "-m",
+        "Initial project commit",
+      );
+    }
+  }
+
   return {
     repo,
     config,
+    cleanupRoot: tempRoot,
   };
 }
 
@@ -267,6 +337,13 @@ test("healthy setup passes", async () => {
 
     assert.equal(result.code, 0, result.stderr);
 
+    assert.match(
+      result.stdout,
+      /✓ Git repository — Initialized in this project/,
+    );
+
+    assert.match(result.stdout, /✓ Git independence — No remote configured/);
+
     assert.match(result.stdout, /✓ Project configuration/);
 
     assert.match(result.stdout, /✓ Sanity Site — site-acme/);
@@ -403,5 +480,193 @@ test("missing operational secrets warn without blocking a public dataset", async
   } finally {
     await sanity.close();
     await removeRepo(repo);
+  }
+});
+
+test("fresh Git repository without commits is accepted", async () => {
+  const { repo } = await createRepo();
+  const sanity = await startSanity();
+
+  try {
+    // The freshly generated project is still allowed to be uncommitted.
+    assert.equal(git(repo, "branch", "--show-current"), "main");
+
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.equal(result.code, 0, result.stderr);
+    assert.match(result.stdout, /✓ Git repository/);
+    assert.match(result.stdout, /✓ Git independence — No remote configured/);
+    assert.match(result.stdout, /Proti is ready\./);
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("custom GitHub remote and existing commit are preserved", async () => {
+  const customRemote = "git@github.com:acme/acme-health.git";
+  const { repo } = await createRepo({
+    remoteUrl: customRemote,
+    withCommit: true,
+  });
+  const sanity = await startSanity();
+
+  try {
+    const originalCommit = git(repo, "rev-parse", "HEAD");
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.equal(result.code, 0, result.stderr);
+    assert.match(
+      result.stdout,
+      /✓ Git independence — No inherited proti-demo remote/,
+    );
+    assert.equal(git(repo, "remote", "get-url", "origin"), customRemote);
+    assert.equal(git(repo, "rev-parse", "HEAD"), originalCommit);
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("inherited proti-demo origin is rejected", async () => {
+  const { repo } = await createRepo({
+    remoteUrl: "git@github.com:example/proti-demo.git",
+  });
+  const sanity = await startSanity();
+
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.notEqual(result.code, 0);
+    assert.match(
+      result.stdout,
+      /✗ Git independence — Inherited proti-demo remote detected \(origin\)/,
+    );
+    assert.match(result.stdout, /git remote remove/);
+    assert.match(result.stdout, /Proti setup has 1 problem/);
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("inherited proti-demo remote is rejected even when named upstream", async () => {
+  const { repo } = await createRepo();
+  git(
+    repo,
+    "remote",
+    "add",
+    "upstream",
+    "https://github.com/example/proti-demo.git",
+  );
+  const sanity = await startSanity();
+
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.notEqual(result.code, 0);
+    assert.match(
+      result.stdout,
+      /Inherited proti-demo remote detected \(upstream\)/,
+    );
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("inherited proti-demo push URL is rejected even with an independent fetch URL", async () => {
+  const { repo } = await createRepo({
+    remoteUrl: "https://github.com/acme/acme-health.git",
+  });
+  git(
+    repo,
+    "remote",
+    "set-url",
+    "--push",
+    "origin",
+    "https://github.com/example/proti-demo.git",
+  );
+  const sanity = await startSanity();
+
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.notEqual(result.code, 0);
+    assert.match(
+      result.stdout,
+      /Inherited proti-demo remote detected \(origin\)/,
+    );
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("missing Git repository fails with initialization guidance", async () => {
+  const { repo } = await createRepo({ gitMode: "none" });
+  const sanity = await startSanity();
+
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.notEqual(result.code, 0);
+    assert.match(result.stdout, /✗ Git repository — No Git repository found/);
+    assert.match(result.stdout, /pnpm proti:init/);
+    assert.match(result.stdout, /Proti setup has 1 problem/);
+  } finally {
+    await sanity.close();
+    await removeRepo(repo);
+  }
+});
+
+test("Git repository initialized only in a parent directory fails", async () => {
+  const { repo, cleanupRoot } = await createRepo({ gitMode: "parent" });
+  const sanity = await startSanity();
+
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+
+    assert.notEqual(result.code, 0);
+    assert.match(result.stdout, /✗ Git repository — Repository root is/);
+    assert.match(result.stdout, /not the current project/);
+    assert.match(result.stdout, /Proti setup has 1 problem/);
+  } finally {
+    await sanity.close();
+    await removeRepo(cleanupRoot);
+  }
+});
+
+test("missing visual baselines warn without failing project setup", async () => {
+  const { repo, cleanupRoot } = await createRepo({ visualBaselines: "none" });
+  const sanity = await startSanity();
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+    assert.equal(result.code, 0, result.stderr);
+    assert.match(result.stdout, /! Visual baselines/);
+    assert.match(result.stdout, /chromium-desktop/);
+    assert.match(result.stdout, /chromium-mobile/);
+    assert.match(result.stdout, /pnpm proti:visual:init/);
+    assert.match(result.stdout, /Proti is ready with 1 warning/);
+  } finally {
+    await sanity.close();
+    await removeRepo(cleanupRoot);
+  }
+});
+
+test("incomplete visual baselines warn and identify the missing project", async () => {
+  const { repo, cleanupRoot } = await createRepo({
+    visualBaselines: "desktop-only",
+  });
+  const sanity = await startSanity();
+  try {
+    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+    assert.equal(result.code, 0, result.stderr);
+    assert.match(result.stdout, /! Visual baselines/);
+    assert.match(result.stdout, /chromium-mobile/);
+    assert.match(result.stdout, /Proti is ready with 1 warning/);
+  } finally {
+    await sanity.close();
+    await removeRepo(cleanupRoot);
   }
 });
