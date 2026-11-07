@@ -214,15 +214,19 @@ async function removeRepo(repo) {
   });
 }
 
-function runCheck({ repo, baseUrl }) {
+function runCheck({ repo, baseUrl, environmentOverrides = {} }) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, ["scripts/proti-check.mjs"], {
       cwd: repo,
       env: {
         ...process.env,
+        // Keep fixture expectations independent of the CI build environment.
+        // Tests that need an override pass it explicitly below.
+        SANITY_STUDIO_PREVIEW_URL: "",
         SANITY_API_READ_TOKEN: "",
         SANITY_API_WRITE_TOKEN: "",
         PROTI_SANITY_API_BASE_URL: baseUrl,
+        ...environmentOverrides,
       },
       stdio: ["ignore", "pipe", "pipe"],
     });
@@ -756,21 +760,19 @@ test("warns when mode-specific Studio URL files are ignored by Git", async () =>
 test("warns when CI overrides the production Studio Presentation URL", async () => {
   const { repo } = await createRepo();
   const sanity = await startSanity();
-  const previousCI = process.env.CI;
-  const previousPreview = process.env.SANITY_STUDIO_PREVIEW_URL;
   try {
-    process.env.CI = "true";
-    process.env.SANITY_STUDIO_PREVIEW_URL = "http://localhost:3000";
-    const result = await runCheck({ repo, baseUrl: sanity.baseUrl });
+    const result = await runCheck({
+      repo,
+      baseUrl: sanity.baseUrl,
+      environmentOverrides: {
+        CI: "true",
+        SANITY_STUDIO_PREVIEW_URL: "http://localhost:3000",
+      },
+    });
     assert.equal(result.code, 0, result.stderr);
     assert.match(result.stdout, /! CI Studio preview override/);
     assert.match(result.stdout, /overrides studio\/.env.production/);
   } finally {
-    if (previousCI === undefined) delete process.env.CI;
-    else process.env.CI = previousCI;
-    if (previousPreview === undefined)
-      delete process.env.SANITY_STUDIO_PREVIEW_URL;
-    else process.env.SANITY_STUDIO_PREVIEW_URL = previousPreview;
     await sanity.close();
     await removeRepo(repo);
   }

@@ -26,7 +26,6 @@ jobs:
       SANITY_STUDIO_PROJECT_ID: ${{ secrets.NEXT_SANITY_PROJECT_ID }}
       SANITY_STUDIO_DATASET: ${{ vars.NEXT_SANITY_DATASET || 'production' }}
       SANITY_STUDIO_TITLE: Proti Studio
-      SANITY_STUDIO_PREVIEW_URL: http://localhost:3000
 
     steps:
       - name: Checkout
