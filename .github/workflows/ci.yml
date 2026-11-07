@@ -120,8 +120,9 @@ jobs:
       SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
       SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
       SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
-      PLAYWRIGHT_BASE_URL: http://localhost:3000
-      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm start
+      PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm exec next start -p 3000 -H 127.0.0.1
+      PLAYWRIGHT_SKIP_WEBSERVER: "0"
       E2E_HOME_PATH: /
 
     steps:
@@ -157,6 +158,17 @@ jobs:
         working-directory: web
         run: pnpm test:e2e:smoke
 
+      - name: Upload Playwright smoke artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-smoke-artifacts-${{ github.run_id }}
+          path: |
+            web/playwright-report/
+            web/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
   playwright-visual:
     name: Playwright visual
     runs-on: ubuntu-latest
@@ -169,8 +181,9 @@ jobs:
       SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
       SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
       SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
-      PLAYWRIGHT_BASE_URL: http://localhost:3000
-      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm start
+      PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+      PLAYWRIGHT_WEB_SERVER_COMMAND: pnpm exec next start -p 3000 -H 127.0.0.1
+      PLAYWRIGHT_SKIP_WEBSERVER: "0"
       E2E_HOME_PATH: /
 
     steps:
