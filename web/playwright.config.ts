@@ -4,8 +4,10 @@ import { loadE2EEnv } from "./e2e/helpers/environment";
 
 loadE2EEnv();
 
+// Proti resolves sites by hostname, so use the same development hostname
+// for Playwright readiness checks and browser navigation.
 const baseURL =
-  process.env.PLAYWRIGHT_BASE_URL?.trim() || "http://127.0.0.1:3000";
+  process.env.PLAYWRIGHT_BASE_URL?.trim() || "http://localhost:3000";
 
 // Keep the production server on the same port Playwright is testing.
 // A dev server can silently move to 3001 when 3000 is occupied.
