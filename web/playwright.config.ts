@@ -4,13 +4,25 @@ import { loadE2EEnv } from "./e2e/helpers/environment";
 
 loadE2EEnv();
 
+// Proti resolves sites by hostname, so use the same development hostname
+// for Playwright readiness checks and browser navigation.
 const baseURL =
-  process.env.PLAYWRIGHT_BASE_URL?.trim() || "http://127.0.0.1:3000";
+  process.env.PLAYWRIGHT_BASE_URL?.trim() || "http://localhost:3000";
+
+// Keep the production server on the same port Playwright is testing.
+// A dev server can silently move to 3001 when 3000 is occupied.
+const serverPort = Number(new URL(baseURL).port || 3000);
 
 const webServerCommand =
-  process.env.PLAYWRIGHT_WEB_SERVER_COMMAND?.trim() || "pnpm dev";
+  process.env.PLAYWRIGHT_WEB_SERVER_COMMAND?.trim() ||
+  `pnpm exec next start -p ${serverPort}`;
 
 const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === "1";
+
+// Use an application-level readiness endpoint that does not depend on
+// Sanity content or which Site owns the incoming hostname.
+// The browser tests still use baseURL to validate the actual pages.
+const readinessURL = new URL("/api/health", baseURL).toString();
 
 export default defineConfig({
   testDir: "./e2e",
@@ -117,8 +129,15 @@ export default defineConfig({
     ? undefined
     : {
         command: webServerCommand,
-        url: baseURL,
-        reuseExistingServer: !process.env.CI,
+        url: readinessURL,
+        // Next.js can be ready even when the CMS-backed homepage is a 404.
+        // Never reuse a stale dev server (or another app) on this port.
+        reuseExistingServer: false,
+        // Make `pnpm start` overrides use the same port as baseURL.
+        env: { PORT: String(serverPort) },
+        // Show startup output when Next.js fails to become ready.
+        stdout: "pipe",
+        stderr: "pipe",
         timeout: 120_000,
       },
 });
