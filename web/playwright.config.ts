@@ -24,6 +24,14 @@ const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === "1";
 // The browser tests still use baseURL to validate the actual pages.
 const readinessURL = new URL("/api/health", baseURL).toString();
 
+console.info("[Playwright] Effective configuration:", {
+  baseURL,
+  readinessURL,
+  webServerCommand,
+  skipWebServer,
+  ci: Boolean(process.env.CI),
+});
+
 export default defineConfig({
   testDir: "./e2e",
 
