@@ -7,7 +7,16 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SNAPSHOT_DIR = path.join(ROOT, "web", "e2e", "__screenshots__");
-const PORT = 3000;
+// Default to the usual local website port, while allowing isolated test runs
+// (or developers with multiple projects) to select another available port.
+const configuredPort = process.env.PROTI_VISUAL_PORT?.trim() || "3000";
+if (!/^\d+$/.test(configuredPort)) {
+  throw new Error("PROTI_VISUAL_PORT must be an integer between 1 and 65535.");
+}
+const PORT = Number(configuredPort);
+if (!Number.isSafeInteger(PORT) || PORT < 1 || PORT > 65535) {
+  throw new Error("PROTI_VISUAL_PORT must be an integer between 1 and 65535.");
+}
 const PNPM = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
 const args = process.argv.slice(2);
 const force = args.includes("--force");
@@ -113,12 +122,24 @@ run(
   {
     PLAYWRIGHT_BASE_URL: `http://localhost:${PORT}`,
     PLAYWRIGHT_WEB_SERVER_COMMAND: `pnpm exec next start -p ${PORT}`,
+    PLAYWRIGHT_SKIP_WEBSERVER: "0",
   },
 );
 
-if (!(await hasScreenshots(SNAPSHOT_DIR))) {
+// Visual tests currently capture the home route for both Chromium projects.
+// A successful process alone does not guarantee both baselines were written.
+const requiredBaselines = ["chromium-desktop", "chromium-mobile"].map(
+  (project) => path.join(SNAPSHOT_DIR, project, "home.png"),
+);
+const missingBaselines = [];
+for (const file of requiredBaselines) {
+  if (!(await exists(file))) {
+    missingBaselines.push(path.relative(ROOT, file));
+  }
+}
+if (missingBaselines.length > 0) {
   throw new Error(
-    "Playwright completed but no PNG snapshots were found. Check web/e2e/visual.spec.ts.",
+    `Playwright completed, but required visual baselines are missing: ${missingBaselines.join(", ")}. Check web/e2e/visual.spec.ts.`,
   );
 }
 

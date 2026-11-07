@@ -345,11 +345,23 @@ test("first initialization clears inherited visual baselines and rerun preserves
     "chromium-desktop",
   );
   const screenshot = path.join(snapshots, "home.png");
+  const note = path.join(snapshots, "README.md");
+  const mobileScreenshot = path.join(
+    repo,
+    "web",
+    "e2e",
+    "__screenshots__",
+    "chromium-mobile",
+    "home.png",
+  );
 
   try {
     await copyScript(INIT_SCRIPT, repo, "proti-init.mjs");
     await fs.mkdir(snapshots, { recursive: true });
+    await fs.mkdir(path.dirname(mobileScreenshot), { recursive: true });
     await fs.writeFile(screenshot, "inherited demo screenshot");
+    await fs.writeFile(mobileScreenshot, "inherited mobile screenshot");
+    await fs.writeFile(note, "Snapshot directory information");
 
     const first = await runNode({
       cwd: repo,
@@ -361,6 +373,13 @@ test("first initialization clears inherited visual baselines and rerun preserves
     assert.match(first.stdout, /Removed inherited demo visual baselines/);
     assert.match(first.stdout, /pnpm proti:visual:init/);
     await assert.rejects(fs.access(screenshot), { code: "ENOENT" });
+    await assert.rejects(fs.access(mobileScreenshot), { code: "ENOENT" });
+    assert.equal(
+      await fs.readFile(note, "utf8"),
+      "Snapshot directory information",
+    );
+    assert.ok((await fs.stat(snapshots)).isDirectory());
+    assert.ok((await fs.stat(path.dirname(mobileScreenshot))).isDirectory());
 
     await fs.mkdir(snapshots, { recursive: true });
     await fs.writeFile(screenshot, "new project screenshot");
