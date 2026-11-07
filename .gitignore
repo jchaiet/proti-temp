@@ -60,6 +60,10 @@ web/.env*
 studio/.env*
 !studio/.env.example
 
+# Allow Sanity Studio environment-specific configuration
+!studio/.env.development
+!studio/.env.production
+
 # Playwright
 test-results/
 playwright-report/
