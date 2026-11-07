@@ -19,9 +19,6 @@ const webServerCommand =
 
 const skipWebServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER === "1";
 
-// Use an application-level readiness endpoint that does not depend on
-// Sanity content or which Site owns the incoming hostname.
-// The browser tests still use baseURL to validate the actual pages.
 const readinessURL = new URL("/api/health", baseURL).toString();
 
 console.info("[Playwright] Effective configuration:", {
